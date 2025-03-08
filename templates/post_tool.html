@@ -1,0 +1,2426 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POST TOOL</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Open+Sans:wght@300;400;600;700&family=Lato:wght@300;400;700&family=Montserrat:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600;700&family=Oswald:wght@300;400;500;600;700&family=Roboto+Condensed:wght@300;400;700&family=Source+Sans+Pro:wght@300;400;600;700&family=Slabo+27px&family=PT+Sans:wght@400;700&family=Exo+2:wght@300;400;500;600;700&family=Ubuntu:wght@300;400;500;700&family=Nunito:wght@300;400;600;700&family=Playfair+Display:wght@400;500;600;700&family=Merriweather:wght@300;400;700&family=Lora:wght@400;500;600;700&family=Crimson+Text:wght@400;600;700&family=Karla:wght@300;400;500;700&family=Fira+Sans:wght@300;400;500;700&family=Rubik:wght@300;400;500;600;700&family=Noto+Sans:wght@400;700&family=Work+Sans:wght@300;400;500;600;700&family=Nanum+Gothic:wght@400;700;800&family=Quicksand:wght@300;400;500;600;700&family=Josefin+Sans:wght@300;400;500;600;700&family=Cabin:wght@400;500;600;700&family=Arimo:wght@400;500;600;700&family=Abel&family=Dancing+Script:wght@400;500;600;700&family=Pacifico&family=Shadows+Into+Light&family=Amatic+SC:wght@400;700&family=Satisfy&family=Sacramento&family=Indie+Flower&family=Caveat:wght@400;500;600;700&family=Great+Vibes&family=Kaushan+Script&family=Lobster&family=Permanent+Marker&family=Architects+Daughter&family=Russo+One&family=Orbitron:wght@400;500;600;700&family=Audiowide&family=Exo:wght@300;400;500;600;700&family=Righteous&family=Bangers&family=Creepster&family=Bungee&family=Press+Start+2P&family=Monoton&family=VT323&family=Iceland&family=Cinzel:wght@400;500;600;700&family=Alegreya:wght@400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&family=Libre+Baskerville:wght@400;700&family=Spectral:wght@200;300;400;500;600;700&family=Crimson+Pro:wght@200;300;400;500;600;700&family=EB+Garamond:wght@400;500;600;700&family=Noto+Serif:wght@400;700&family=Gentium+Book+Basic:wght@400;700&family=Cardo:wght@400;700&family=Cairo:wght@200;300;400;500;600;700&family=Tajawal:wght@200;300;400;500;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Mada:wght@300;400;500;600;700&family=El+Messiri:wght@400;500;600;700&family=Zen+Kurenaido&family=Rock+Salt&family=Hind:wght@300;400;500;600;700&family=Teko:wght@300;400;500;600;700&family=Kanit:wght@100;200;300;400;500;600;700&family=Anton&family=Prompt:wght@100;200;300;400;500;600;700&family=Archivo:wght@100;200;300;400;500;600;700&family=Bebas+Neue&family=Passion+One:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        body {
+            background: linear-gradient(135deg, #0072ff, #00c6ff);
+            min-height: 100vh;
+        }
+        
+        /* ====== 100+ Animation Effects ====== */
+        /* Basic Animation Types */
+        .anim-fade-in { animation: fadeIn 1s both; }
+        .anim-fade-out { animation: fadeOut 1s both; }
+        .anim-slide-up { animation: slideUp 0.5s both; }
+        .anim-slide-down { animation: slideDown 0.5s both; }
+        .anim-slide-left { animation: slideLeft 0.5s both; }
+        .anim-slide-right { animation: slideRight 0.5s both; }
+        .anim-zoom-in { animation: zoomIn 0.5s both; }
+        .anim-zoom-out { animation: zoomOut 0.5s both; }
+        .anim-flip-x { animation: flipX 0.8s both; }
+        .anim-flip-y { animation: flipY 0.8s both; }
+        .anim-rotate { animation: rotate 1s both; }
+        .anim-pulse { animation: pulse 1.5s infinite; }
+        .anim-bounce { animation: bounce 1s infinite; }
+        .anim-float { animation: float 3s infinite; }
+        .anim-shake { animation: shake 0.8s both; }
+        .anim-tada { animation: tada 1s both; }
+        .anim-wobble { animation: wobble 1s both; }
+        .anim-jello { animation: jello 1s both; }
+        .anim-heart-beat { animation: heartBeat 1.3s infinite; }
+        .anim-flash { animation: flash 1s both; }
+        .anim-swing { animation: swing 1s both; }
+        
+        /* Duration Variants */
+        .duration-fast { animation-duration: 0.3s !important; }
+        .duration-normal { animation-duration: 1s !important; }
+        .duration-slow { animation-duration: 2s !important; }
+        .duration-very-slow { animation-duration: 3s !important; }
+        
+        /* Timing Function Variants */
+        .timing-linear { animation-timing-function: linear !important; }
+        .timing-ease { animation-timing-function: ease !important; }
+        .timing-ease-in { animation-timing-function: ease-in !important; }
+        .timing-ease-out { animation-timing-function: ease-out !important; }
+        .timing-ease-in-out { animation-timing-function: ease-in-out !important; }
+        .timing-bounce { animation-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55) !important; }
+        .timing-snap { animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important; }
+        
+        /* Delay Variants */
+        .delay-100 { animation-delay: 0.1s !important; }
+        .delay-200 { animation-delay: 0.2s !important; }
+        .delay-300 { animation-delay: 0.3s !important; }
+        .delay-400 { animation-delay: 0.4s !important; }
+        .delay-500 { animation-delay: 0.5s !important; }
+        .delay-750 { animation-delay: 0.75s !important; }
+        .delay-1000 { animation-delay: 1s !important; }
+        
+        /* Iteration Variants */
+        .iteration-1 { animation-iteration-count: 1 !important; }
+        .iteration-2 { animation-iteration-count: 2 !important; }
+        .iteration-3 { animation-iteration-count: 3 !important; }
+        .iteration-infinite { animation-iteration-count: infinite !important; }
+        
+        /* Direction Variants */
+        .direction-normal { animation-direction: normal !important; }
+        .direction-reverse { animation-direction: reverse !important; }
+        .direction-alternate { animation-direction: alternate !important; }
+        .direction-alternate-reverse { animation-direction: alternate-reverse !important; }
+        
+        /* Fill Mode Variants */
+        .fill-none { animation-fill-mode: none !important; }
+        .fill-forwards { animation-fill-mode: forwards !important; }
+        .fill-backwards { animation-fill-mode: backwards !important; }
+        .fill-both { animation-fill-mode: both !important; }
+        
+        /* Combined Animations */
+        .anim-attention-seeker { animation: pulse 0.5s, tada 0.5s 0.5s, pulse 0.5s 1s; }
+        .anim-rubber-band { animation: rubberBand 1s both; }
+        .anim-light-speed-in { animation: lightSpeedIn 1s both; }
+        .anim-light-speed-out { animation: lightSpeedOut 1s both; }
+        .anim-hinge { animation: hinge 2s both; }
+        .anim-jack-in-box { animation: jackInBox 1s both; }
+        .anim-roll-in { animation: rollIn 1s both; }
+        .anim-roll-out { animation: rollOut 1s both; }
+        
+        /* Hover Animations */
+        .hover-grow:hover { transform: scale(1.05); transition: transform 0.3s; }
+        .hover-shrink:hover { transform: scale(0.95); transition: transform 0.3s; }
+        .hover-rotate:hover { transform: rotate(5deg); transition: transform 0.3s; }
+        .hover-rotate-reverse:hover { transform: rotate(-5deg); transition: transform 0.3s; }
+        .hover-translateY:hover { transform: translateY(-5px); transition: transform 0.3s; }
+        .hover-translateX:hover { transform: translateX(5px); transition: transform 0.3s; }
+        
+        /* Text Animations */
+        .text-blur-in { animation: textBlurIn 1s both; }
+        .text-focus-in { animation: textFocusIn 1s both; }
+        .text-shadow-drop { animation: textShadowDrop 1s both; }
+        .text-pop-up { animation: textPopUp 0.5s both; }
+        .text-flicker { animation: textFlicker 3s linear infinite; }
+        .text-glitch { animation: textGlitch 0.5s both; }
+        
+        /* Background Animations */
+        .bg-pan-left { animation: bgPanLeft 30s linear infinite; }
+        .bg-pan-right { animation: bgPanRight 30s linear infinite; }
+        .bg-pan-top { animation: bgPanTop 30s linear infinite; }
+        .bg-pan-bottom { animation: bgPanBottom 30s linear infinite; }
+        .bg-pan-diagonal { animation: bgPanDiagonal 30s linear infinite; }
+        
+        /* Border & Shadow Animations */
+        .shadow-pulse { animation: shadowPulse 2s infinite; }
+        .shadow-inset-pulse { animation: shadowInsetPulse 2s infinite; }
+        .border-pulse { animation: borderPulse 2s infinite; }
+        .glow-pulse { animation: glowPulse 2s infinite; }
+        
+        /* Gradient Animations */
+        .gradient-animate { 
+            background: linear-gradient(270deg, #ff7eb3, #ff758c, #ff66c4, #c471ed, #7571ed, #65a6fa);
+            background-size: 600% 600%;
+            animation: gradientAnimation 10s ease infinite;
+        }
+        
+        .rainbow-text {
+            background-image: linear-gradient(90deg, #ff0000, #ffa500, #ffff00, #008000, #0000ff, #4b0082, #ee82ee);
+            background-clip: text;
+            color: transparent;
+            background-size: 600% 600%;
+            animation: rainbowAnimation 6s linear infinite;
+        }
+        
+        /* 3D Transform Animations */
+        .rotate-3d-x { animation: rotate3dX 3s infinite; }
+        .rotate-3d-y { animation: rotate3dY 3s infinite; }
+        .rotate-3d-both { animation: rotate3dBoth 5s infinite; }
+        
+        /* ====== Animation Keyframes ====== */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes slideDown { from { transform: translateY(-20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes slideLeft { from { transform: translateX(20px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes slideRight { from { transform: translateX(-20px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes zoomIn { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        @keyframes zoomOut { from { transform: scale(1.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        @keyframes flipX { from { transform: perspective(400px) rotateX(90deg); opacity: 0; } to { transform: perspective(400px) rotateX(0); opacity: 1; } }
+        @keyframes flipY { from { transform: perspective(400px) rotateY(90deg); opacity: 0; } to { transform: perspective(400px) rotateY(0); opacity: 1; } }
+        @keyframes rotate { from { transform: rotate(0); } to { transform: rotate(360deg); } }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0); }
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        @keyframes tada {
+            0% { transform: scale(1); }
+            10%, 20% { transform: scale(0.9) rotate(-3deg); }
+            30%, 50%, 70%, 90% { transform: scale(1.1) rotate(3deg); }
+            40%, 60%, 80% { transform: scale(1.1) rotate(-3deg); }
+            100% { transform: scale(1) rotate(0); }
+        }
+        @keyframes wobble {
+            0% { transform: none; }
+            15% { transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg); }
+            30% { transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg); }
+            45% { transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg); }
+            60% { transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg); }
+            75% { transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg); }
+            100% { transform: none; }
+        }
+        @keyframes jello {
+            0%, 11.1%, 100% { transform: none; }
+            22.2% { transform: skewX(-12.5deg) skewY(-12.5deg); }
+            33.3% { transform: skewX(6.25deg) skewY(6.25deg); }
+            44.4% { transform: skewX(-3.125deg) skewY(-3.125deg); }
+            55.5% { transform: skewX(1.5625deg) skewY(1.5625deg); }
+            66.6% { transform: skewX(-0.78125deg) skewY(-0.78125deg); }
+            77.7% { transform: skewX(0.390625deg) skewY(0.390625deg); }
+            88.8% { transform: skewX(-0.1953125deg) skewY(-0.1953125deg); }
+        }
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            14% { transform: scale(1.3); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.3); }
+            70% { transform: scale(1); }
+        }
+        @keyframes flash {
+            0%, 50%, 100% { opacity: 1; }
+            25%, 75% { opacity: 0; }
+        }
+        @keyframes swing {
+            20% { transform: rotate3d(0, 0, 1, 15deg); }
+            40% { transform: rotate3d(0, 0, 1, -10deg); }
+            60% { transform: rotate3d(0, 0, 1, 5deg); }
+            80% { transform: rotate3d(0, 0, 1, -5deg); }
+            100% { transform: rotate3d(0, 0, 1, 0deg); }
+        }
+        @keyframes rubberBand {
+            0% { transform: scale3d(1, 1, 1); }
+            30% { transform: scale3d(1.25, 0.75, 1); }
+            40% { transform: scale3d(0.75, 1.25, 1); }
+            50% { transform: scale3d(1.15, 0.85, 1); }
+            65% { transform: scale3d(0.95, 1.05, 1); }
+            75% { transform: scale3d(1.05, 0.95, 1); }
+            100% { transform: scale3d(1, 1, 1); }
+        }
+        @keyframes lightSpeedIn {
+            0% { transform: translate3d(100%, 0, 0) skewX(-30deg); opacity: 0; }
+            60% { transform: skewX(20deg); opacity: 1; }
+            80% { transform: skewX(-5deg); }
+            100% { transform: none; opacity: 1; }
+        }
+        @keyframes lightSpeedOut {
+            0% { opacity: 1; }
+            100% { transform: translate3d(100%, 0, 0) skewX(30deg); opacity: 0; }
+        }
+        @keyframes hinge {
+            0% { transform-origin: top left; animation-timing-function: ease-in-out; }
+            20%, 60% { transform: rotate3d(0, 0, 1, 80deg); transform-origin: top left; animation-timing-function: ease-in-out; }
+            40%, 80% { transform: rotate3d(0, 0, 1, 60deg); transform-origin: top left; animation-timing-function: ease-in-out; opacity: 1; }
+            100% { transform: translate3d(0, 700px, 0); opacity: 0; }
+        }
+        @keyframes jackInBox {
+            0% { opacity: 0; transform: scale(0.1) rotate(30deg); transform-origin: center bottom; }
+            50% { transform: rotate(-10deg); }
+            70% { transform: rotate(3deg); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        @keyframes rollIn {
+            0% { opacity: 0; transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, -120deg); }
+            100% { opacity: 1; transform: none; }
+        }
+        @keyframes rollOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, 120deg); }
+        }
+        @keyframes textBlurIn {
+            0% { filter: blur(12px); opacity: 0; }
+            100% { filter: blur(0); opacity: 1; }
+        }
+        @keyframes textFocusIn {
+            0% { letter-spacing: 0.5em; filter: blur(12px); opacity: 0; }
+            100% { letter-spacing: normal; filter: blur(0); opacity: 1; }
+        }
+        @keyframes textShadowDrop {
+            0% { text-shadow: 0 0 0 rgba(0, 0, 0, 0); }
+            100% { text-shadow: 0 6px 18px rgba(0, 0, 0, 0.35); }
+        }
+        @keyframes textPopUp {
+            0% { transform: scale(0.5); opacity: 0; }
+            80% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        @keyframes textFlicker {
+            0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% { opacity: 1; }
+            20%, 21.999%, 63%, 63.999%, 65%, 69.999% { opacity: 0.33; }
+        }
+        @keyframes textGlitch {
+            0% { text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75), -0.05em -0.025em 0 rgba(0, 255, 0, 0.75), 0.025em 0.05em 0 rgba(0, 0, 255, 0.75); }
+            14% { text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75), -0.05em -0.025em 0 rgba(0, 255, 0, 0.75), 0.025em 0.05em 0 rgba(0, 0, 255, 0.75); }
+            15% { text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 0.75), 0.025em 0.025em 0 rgba(0, 255, 0, 0.75), -0.05em -0.05em 0 rgba(0, 0, 255, 0.75); }
+            49% { text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 0.75), 0.025em 0.025em 0 rgba(0, 255, 0, 0.75), -0.05em -0.05em 0 rgba(0, 0, 255, 0.75); }
+            50% { text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.75), 0.05em 0 0 rgba(0, 255, 0, 0.75), 0 -0.05em 0 rgba(0, 0, 255, 0.75); }
+            99% { text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.75), 0.05em 0 0 rgba(0, 255, 0, 0.75), 0 -0.05em 0 rgba(0, 0, 255, 0.75); }
+            100% { text-shadow: -0.025em 0 0 rgba(255, 0, 0, 0.75), -0.025em -0.025em 0 rgba(0, 255, 0, 0.75), -0.025em -0.05em 0 rgba(0, 0, 255, 0.75); }
+        }
+        @keyframes bgPanLeft { 0% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        @keyframes bgPanRight { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }
+        @keyframes bgPanTop { 0% { background-position: 50% 100%; } 100% { background-position: 50% 0%; } }
+        @keyframes bgPanBottom { 0% { background-position: 50% 0%; } 100% { background-position: 50% 100%; } }
+        @keyframes bgPanDiagonal { 0% { background-position: 0% 0%; } 100% { background-position: 100% 100%; } }
+        @keyframes shadowPulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(0, 123, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0); }
+        }
+        @keyframes shadowInsetPulse {
+            0% { box-shadow: inset 0 0 0 0 rgba(0, 123, 255, 0.4); }
+            70% { box-shadow: inset 0 0 0 15px rgba(0, 123, 255, 0); }
+            100% { box-shadow: inset 0 0 0 0 rgba(0, 123, 255, 0); }
+        }
+        @keyframes borderPulse {
+            0% { border-color: rgba(0, 123, 255, 0.4); }
+            50% { border-color: rgba(0, 123, 255, 1); }
+            100% { border-color: rgba(0, 123, 255, 0.4); }
+        }
+        @keyframes glowPulse {
+            0% { filter: drop-shadow(0 0 0 rgba(0, 123, 255, 0.4)); }
+            50% { filter: drop-shadow(0 0 8px rgba(0, 123, 255, 0.8)); }
+            100% { filter: drop-shadow(0 0 0 rgba(0, 123, 255, 0.4)); }
+        }
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes rainbowAnimation {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+        @keyframes rotate3dX {
+            0% { transform: perspective(500px) rotateX(0deg); }
+            50% { transform: perspective(500px) rotateX(180deg); }
+            100% { transform: perspective(500px) rotateX(360deg); }
+        }
+        @keyframes rotate3dY {
+            0% { transform: perspective(500px) rotateY(0deg); }
+            50% { transform: perspective(500px) rotateY(180deg); }
+            100% { transform: perspective(500px) rotateY(360deg); }
+        }
+        @keyframes rotate3dBoth {
+            0% { transform: perspective(500px) rotateX(0deg) rotateY(0deg); }
+            25% { transform: perspective(500px) rotateX(180deg) rotateY(0deg); }
+            50% { transform: perspective(500px) rotateX(180deg) rotateY(180deg); }
+            75% { transform: perspective(500px) rotateX(0deg) rotateY(180deg); }
+            100% { transform: perspective(500px) rotateX(0deg) rotateY(0deg); }
+        }
+        
+        /* ====== 50+ Box Customization Options ====== */
+        /* Box Styles */
+        .task-card {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        /* Box Border Styles */
+        .border-none { border: none !important; }
+        .border-thin { border: 1px solid !important; }
+        .border-medium { border: 2px solid !important; }
+        .border-thick { border: 4px solid !important; }
+        .border-double { border: 4px double !important; }
+        .border-dashed { border-style: dashed !important; }
+        .border-dotted { border-style: dotted !important; }
+        .border-groove { border-style: groove !important; }
+        .border-ridge { border-style: ridge !important; }
+        .border-inset { border-style: inset !important; }
+        .border-outset { border-style: outset !important; }
+        
+        /* Border Color Presets */
+        .border-primary { border-color: #007bff !important; }
+        .border-success { border-color: #28a745 !important; }
+        .border-danger { border-color: #dc3545 !important; }
+        .border-warning { border-color: #ffc107 !important; }
+        .border-info { border-color: #17a2b8 !important; }
+        .border-dark { border-color: #343a40 !important; }
+        .border-light { border-color: #f8f9fa !important; }
+        .border-black { border-color: #000 !important; }
+        .border-white { border-color: #fff !important; }
+        .border-transparent { border-color: transparent !important; }
+        .border-gradient {
+            border: 4px solid;
+            border-image-slice: 1;
+            border-image-source: linear-gradient(to right, #743ad5, #d53a9d);
+        }
+        .border-rainbow {
+            border: 4px solid;
+            border-image-slice: 1;
+            border-image-source: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+        }
+        
+        /* Border Radius Styles */
+        .radius-none { border-radius: 0 !important; }
+        .radius-sm { border-radius: 5px !important; }
+        .radius-md { border-radius: 10px !important; }
+        .radius-lg { border-radius: 15px !important; }
+        .radius-xl { border-radius: 20px !important; }
+        .radius-2xl { border-radius: 30px !important; }
+        .radius-3xl { border-radius: 40px !important; }
+        .radius-full { border-radius: 9999px !important; }
+        .radius-custom1 { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+        .radius-custom2 { border-radius: 10% 30% 50% 70%; }
+        .radius-custom3 { border-radius: 10px 40px 10px 40px; }
+        
+        /* Individual Corner Radius */
+        .radius-tl { border-top-left-radius: 15px !important; }
+        .radius-tr { border-top-right-radius: 15px !important; }
+        .radius-bl { border-bottom-left-radius: 15px !important; }
+        .radius-br { border-bottom-right-radius: 15px !important; }
+        
+        /* Box Shadow Styles */
+        .shadow-none { box-shadow: none !important; }
+        .shadow-sm { box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important; }
+        .shadow-md { box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important; }
+        .shadow-lg { box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1) !important; }
+        .shadow-xl { box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1) !important; }
+        .shadow-2xl { box-shadow: 0 16px 32px rgba(0, 0, 0, 0.1) !important; }
+        .shadow-inner { box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1) !important; }
+        .shadow-outline { box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5) !important; }
+        .shadow-raised { box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1) !important; }
+        .shadow-float { box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.1) !important; }
+        .shadow-hard { box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.2) !important; }
+        .shadow-diffuse { box-shadow: 0 1px 1px rgba(0,0,0,0.08), 
+                  0 2px 2px rgba(0,0,0,0.08), 
+                  0 4px 4px rgba(0,0,0,0.08), 
+                  0 8px 8px rgba(0,0,0,0.08),
+                  0 16px 16px rgba(0,0,0,0.08) !important; }
+        .shadow-soft { box-shadow: 0 30px 60px -12px rgba(50,50,93,.25),0 18px 36px -18px rgba(0,0,0,.3) !important; }
+        .shadow-sharp { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24) !important; }
+        .shadow-colored { box-shadow: 0 4px 20px 0 rgba(61, 71, 82, 0.1), 0 0 0 0 rgba(0, 127, 255, 0) !important; }
+        .shadow-colored-hover:hover { box-shadow: 0 4px 20px 0 rgba(61, 71, 82, 0.1), 0 0 0 5px rgba(0, 127, 255, 0.2) !important; }
+        .shadow-neon { box-shadow: 0 0 10px #8a2be2, 0 0 20px #8a2be2, 0 0 30px #8a2be2 !important; }
+        .shadow-dark-neon { box-shadow: 0 0 10px rgba(66, 153, 225, 0.5), 0 0 20px rgba(66, 153, 225, 0.3), 0 0 30px rgba(66, 153, 225, 0.1) !important; }
+        
+        /* Background Styles */
+        .bg-none { background: none !important; }
+        .bg-transparent { background: transparent !important; }
+        .bg-translucent { background-color: rgba(255, 255, 255, 0.7) !important; }
+        .bg-translucent-dark { background-color: rgba(0, 0, 0, 0.7) !important; }
+        .bg-gradient-blue { background: linear-gradient(45deg, #2196F3, #21CBF3) !important; }
+        .bg-gradient-green { background: linear-gradient(45deg, #43A047, #00C853) !important; }
+        .bg-gradient-purple { background: linear-gradient(45deg, #9C27B0, #E040FB) !important; }
+        .bg-gradient-orange { background: linear-gradient(45deg, #FF9800, #F57C00) !important; }
+        .bg-gradient-red { background: linear-gradient(45deg, #F44336, #D50000) !important; }
+        .bg-gradient-gray { background: linear-gradient(45deg, #757575, #9E9E9E) !important; }
+        .bg-pattern-dots { background-image: radial-gradient(#000 1px, transparent 0); background-size: 10px 10px; }
+        .bg-pattern-stripes { background: repeating-linear-gradient(45deg, #f0f0f0, #f0f0f0 10px, #e0e0e0 10px, #e0e0e0 20px); }
+        .bg-pattern-grid { 
+            background-color: #fff;
+            background-image: linear-gradient(#eee 1px, transparent 1px),
+                              linear-gradient(90deg, #eee 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        .bg-blur { backdrop-filter: blur(8px); }
+        
+        /* Blur and Opacity Styles */
+        .opacity-0 { opacity: 0 !important; }
+        .opacity-25 { opacity: 0.25 !important; }
+        .opacity-50 { opacity: 0.5 !important; }
+        .opacity-75 { opacity: 0.75 !important; }
+        .opacity-100 { opacity: 1 !important; }
+        
+        /* Misc Box Styles */
+        .overflow-visible { overflow: visible !important; }
+        .overflow-hidden { overflow: hidden !important; }
+        .overflow-auto { overflow: auto !important; }
+        .overflow-scroll { overflow: scroll !important; }
+        
+        .transform-none { transform: none !important; }
+        .transform-rotate-1 { transform: rotate(1deg) !important; }
+        .transform-rotate-2 { transform: rotate(2deg) !important; }
+        .transform-rotate-3 { transform: rotate(3deg) !important; }
+        .transform-rotate-neg-1 { transform: rotate(-1deg) !important; }
+        .transform-rotate-neg-2 { transform: rotate(-2deg) !important; }
+        .transform-rotate-neg-3 { transform: rotate(-3deg) !important; }
+        .transform-skew-x { transform: skewX(5deg) !important; }
+        .transform-skew-y { transform: skewY(5deg) !important; }
+        
+        /* Task Card Components (Original Styles) */
+        .task-header {
+            background-color: rgba(178, 212, 255, 0.8);
+            color: #333;
+            padding: 15px;
+            font-size: 22px;
+            font-weight: 600;
+        }
+        
+        .task-body {
+            padding: 20px;
+        }
+        
+        .task-input {
+            border-radius: 10px;
+            border: 1px solid #ddd;
+        }
+        
+        .btn-start {
+            background-color: #4cd964;
+            border: none;
+            color: white;
+            border-radius: 10px;
+        }
+        
+        .btn-stop {
+            background-color: #ff3b30;
+            border: none;
+            color: white;
+            border-radius: 10px;
+        }
+        
+        .btn-refresh {
+            background: linear-gradient(45deg, #2196f3, #00bcd4);
+            border: none;
+            color: white;
+            border-radius: 10px;
+            width: 100%;
+            padding: 10px;
+            font-weight: 500;
+            margin-top: 10px;
+        }
+        
+        .task-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+        
+        .task-table th {
+            background-color: #f8f9fa;
+            padding: 12px;
+            border-bottom: 1px solid #e9ecef;
+            text-align: left;
+        }
+        
+        .task-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .dark-mode .task-card {
+            background-color: #1a1a1a;
+            color: white;
+        }
+        
+        .dark-mode .task-header {
+            background-color: #2c3e50;
+            color: white;
+        }
+        
+        .dark-mode .task-table th {
+            background-color: #2c3e50;
+            color: white;
+            border-bottom-color: #444;
+        }
+        
+        .dark-mode .task-table td {
+            border-bottom-color: #444;
+        }
+        
+        .transparent-mode .task-card {
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .transparent-mode .task-header {
+            background-color: rgba(178, 212, 255, 0.4);
+        }
+        
+        .file-card {
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 15px;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .dark-mode .file-card {
+            background-color: #1a1a1a;
+        }
+        
+        .transparent-mode .file-card {
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        /* Status Badges */
+        .status-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .status-created {
+            background-color: #007bff;
+            color: white;
+        }
+        
+        .status-running {
+            background-color: #28a745;
+            color: white;
+            animation: pulse 1.5s infinite;
+        }
+        
+        .status-completed {
+            background-color: #17a2b8;
+            color: white;
+        }
+        
+        .status-failed, .status-error {
+            background-color: #dc3545;
+            color: white;
+        }
+        
+        .status-stopped {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        /* Log styling */
+        #logContent {
+            color: #333;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .dark-mode #logContent {
+            background-color: #222;
+            color: #eee;
+        }
+        
+        #logContent .alert {
+            padding: 8px 12px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .task-card {
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container my-4">
+        <div class="action-buttons mb-4 d-flex justify-content-between align-items-center p-3 bg-white rounded-pill shadow-sm">
+            <div class="d-flex gap-2">
+                <button class="btn btn-warning" id="toggleDarkMode"><i class="fas fa-moon me-2"></i>Dark Mode</button>
+                <button class="btn btn-secondary" id="changeBackground"><i class="fas fa-image me-2"></i>Background</button>
+                <button class="btn btn-info" id="toggleTransparency"><i class="fas fa-adjust me-2"></i>Transparency</button>
+                <a href="{{ url_for('index') }}" class="btn btn-danger"><i class="fas fa-home me-2"></i>HOME</a>
+            </div>
+            <div class="d-flex gap-2 align-items-center">
+                <button class="btn btn-primary" id="openSettings"><i class="fas fa-cog me-2"></i>Settings</button>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="file-card">
+                    <form id="postToolForm" method="POST" enctype="multipart/form-data" action="{{ url_for('run_post_tool') }}">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="cookies_file" class="form-label"><i class="fas fa-cookie me-2"></i>Cookies File</label>
+                                    <input type="file" class="form-control" id="cookies_file" name="cookies_file" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="comments_file" class="form-label"><i class="fas fa-comment me-2"></i>Comments File</label>
+                                    <input type="file" class="form-control" id="comments_file" name="comments_file" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="post_url" class="form-label"><i class="fas fa-link me-2"></i>FB Post Bookmark Link</label>
+                                    <input type="text" class="form-control" id="post_url" name="post_url" placeholder="Enter Facebook post bookmark link" required>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="mb-3">
+                                    <label for="commenter_name" class="form-label"><i class="fas fa-user me-2"></i>Commenter Name</label>
+                                    <input type="text" class="form-control" id="commenter_name" name="commenter_name" placeholder="Enter name" required>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="mb-3">
+                                    <label for="delay" class="form-label"><i class="fas fa-clock me-2"></i>Time (seconds)</label>
+                                    <input type="number" class="form-control" id="delay" name="delay" min="1" value="5" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-success" id="createTaskBtn">
+                                <i class="fas fa-plus-circle me-2"></i>Create Task
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Animation Showcase -->
+                <div class="task-card">
+                    <div class="task-header">
+                        <i class="fas fa-magic me-2"></i> Animation & Style Showcase
+                    </div>
+                    <div class="task-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5 class="mb-3">Quick Animation Styles</h5>
+                                <div class="d-flex flex-wrap gap-2 mb-3">
+                                    <button class="btn btn-sm btn-primary apply-anim" data-anim="anim-fade-in">Fade In</button>
+                                    <button class="btn btn-sm btn-primary apply-anim" data-anim="anim-slide-up">Slide Up</button>
+                                    <button class="btn btn-sm btn-primary apply-anim" data-anim="anim-zoom-in">Zoom In</button>
+                                    <button class="btn btn-sm btn-primary apply-anim" data-anim="anim-flip-x">Flip X</button>
+                                    <button class="btn btn-sm btn-primary apply-anim" data-anim="anim-pulse">Pulse</button>
+                                    <button class="btn btn-sm btn-primary apply-anim" data-anim="anim-bounce">Bounce</button>
+                                    <button class="btn btn-sm btn-primary apply-anim" data-anim="anim-tada">Tada</button>
+                                    <button class="btn btn-sm btn-primary apply-anim" data-anim="anim-wobble">Wobble</button>
+                                    <button class="btn btn-sm btn-primary apply-anim" data-anim="anim-jello">Jello</button>
+                                    <button class="btn btn-sm btn-primary apply-anim" data-anim="anim-heart-beat">Heart Beat</button>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h5 class="mb-3">Quick Box Styles</h5>
+                                <div class="d-flex flex-wrap gap-2 mb-3">
+                                    <button class="btn btn-sm btn-secondary apply-box" data-box="border-gradient">Gradient Border</button>
+                                    <button class="btn btn-sm btn-secondary apply-box" data-box="border-rainbow">Rainbow Border</button>
+                                    <button class="btn btn-sm btn-secondary apply-box" data-box="shadow-neon">Neon Shadow</button>
+                                    <button class="btn btn-sm btn-secondary apply-box" data-box="shadow-float">Float Shadow</button>
+                                    <button class="btn btn-sm btn-secondary apply-box" data-box="radius-custom1">Organic Shape</button>
+                                    <button class="btn btn-sm btn-secondary apply-box" data-box="bg-gradient-purple">Purple Gradient</button>
+                                    <button class="btn btn-sm btn-secondary apply-box" data-box="bg-pattern-grid">Grid Pattern</button>
+                                    <button class="btn btn-sm btn-secondary apply-box" data-box="gradient-animate">Animated Gradient</button>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="preview-box p-4 border rounded text-center">
+                                    <h4 class="mb-3">Preview Box</h4>
+                                    <p>Click any effect button above to see a live preview here.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Task Manager Card -->
+                <div class="task-card">
+                    <div class="task-header">
+                        <i class="fas fa-tasks me-2"></i> Task Manager
+                    </div>
+                    <div class="task-body">
+                        <div class="mb-3">
+                            <label for="taskIdInput" class="form-label">Task ID</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control task-input" id="taskIdInput" placeholder="Enter Task ID">
+                                <button class="btn btn-start" id="startBtn">
+                                    <i class="fas fa-play me-1"></i> START
+                                </button>
+                                <button class="btn btn-stop" id="stopBtn">
+                                    <i class="fas fa-stop me-1"></i> STOP
+                                </button>
+                            </div>
+                        </div>
+                        <button class="btn btn-refresh" id="refreshBtn">
+                            <i class="fas fa-sync-alt me-2"></i> REFRESH TASK LIST
+                        </button>
+                        
+                        <!-- Customization Quick Access -->
+                        <div class="mt-4">
+                            <h5 class="mb-3"><i class="fas fa-paint-brush me-2"></i>Quick Customization</h5>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Box Style</label>
+                                        <select id="quickBoxStyle" class="form-select">
+                                            <option value="">Select Box Style</option>
+                                            <option value="border-gradient">Gradient Border</option>
+                                            <option value="border-rainbow">Rainbow Border</option>
+                                            <option value="shadow-neon">Neon Shadow</option>
+                                            <option value="shadow-float">Float Shadow</option>
+                                            <option value="bg-gradient-purple">Purple Gradient</option>
+                                            <option value="bg-gradient-blue">Blue Gradient</option>
+                                            <option value="bg-gradient-green">Green Gradient</option>
+                                            <option value="bg-gradient-orange">Orange Gradient</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Animation Effect</label>
+                                        <select id="quickAnimation" class="form-select">
+                                            <option value="">Select Animation</option>
+                                            <option value="anim-fade-in">Fade In</option>
+                                            <option value="anim-slide-up">Slide Up</option>
+                                            <option value="anim-zoom-in">Zoom In</option>
+                                            <option value="anim-pulse">Pulse</option>
+                                            <option value="anim-bounce">Bounce</option>
+                                            <option value="anim-tada">Tada</option>
+                                            <option value="gradient-animate">Animated Gradient</option>
+                                            <option value="anim-heart-beat">Heart Beat</option>
+                                            <option value="anim-attention-seeker">Attention Seeker</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <button id="applyCustomization" class="btn btn-primary w-100 mb-2">
+                                <i class="fas fa-check me-2"></i>Apply Customization
+                            </button>
+                            <button id="openCustomizationModal" class="btn btn-outline-secondary w-100">
+                                <i class="fas fa-sliders-h me-2"></i>Advanced Customization Options
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Active Tasks Card -->
+                <div class="task-card" id="activeTasksCard">
+                    <div class="task-header d-flex justify-content-between align-items-center">
+                        <div>
+                            <i class="fas fa-list me-2"></i> Active Tasks
+                        </div>
+                        <div>
+                            <button class="btn btn-sm btn-outline-dark cycle-style" title="Change Box Style">
+                                <i class="fas fa-palette"></i>
+                            </button>
+                            <button class="btn btn-sm btn-outline-dark cycle-animation" title="Apply Animation">
+                                <i class="fas fa-film"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="task-body">
+                        <div class="table-responsive">
+                            <table class="task-table" id="taskTable">
+                                <thead>
+                                    <tr>
+                                        <th>TASK ID</th>
+                                        <th>STATUS</th>
+                                        <th>CREATED</th>
+                                        <th>PROGRESS</th>
+                                        <th>ACTIONS</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="taskTableBody">
+                                    <tr>
+                                        <td colspan="5" class="text-center">No active tasks</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Log Viewer Card -->
+                <div class="task-card" id="logViewerCard" style="display: none;">
+                    <div class="task-header d-flex justify-content-between align-items-center">
+                        <div>
+                            <i class="fas fa-file-alt me-2"></i> Task Logs - <span id="logTaskId"></span>
+                        </div>
+                        <button class="btn btn-sm btn-outline-dark" id="closeLogViewer">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="task-body">
+                        <div id="logContent" style="max-height: 500px; overflow-y: auto; font-family: monospace; white-space: pre-wrap; background-color: #f8f9fa; padding: 15px; border-radius: 5px;">
+                            Loading logs...
+                        </div>
+                        <button class="btn btn-primary mt-3" id="refreshLogs">
+                            <i class="fas fa-sync-alt me-2"></i> Refresh Logs
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title" id="settingsModalLabel">Customize Settings</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <ul class="nav nav-tabs" id="settingsTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="basic-tab" data-bs-toggle="tab" data-bs-target="#basic" type="button" role="tab">Basic</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="appearance-tab" data-bs-toggle="tab" data-bs-target="#appearance" type="button" role="tab">Appearance</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="effects-tab" data-bs-toggle="tab" data-bs-target="#effects" type="button" role="tab">Effects</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="advanced-tab" data-bs-toggle="tab" data-bs-target="#advanced" type="button" role="tab">Advanced</button>
+                        </li>
+                    </ul>
+                    
+                    <div class="tab-content mt-3" id="settingsTabContent">
+                        <!-- Basic Settings Tab -->
+                        <div class="tab-pane fade show active" id="basic" role="tabpanel">
+                            <!-- Page Title Input -->
+                            <label for="customTitle" class="form-label">Page Title:</label>
+                            <input type="text" id="customTitle" class="form-control mb-3" placeholder="Enter new title">
+
+                            <!-- Footer Text Input -->
+                            <label for="customFooter" class="form-label">Footer Text:</label>
+                            <input type="text" id="customFooter" class="form-control mb-3" placeholder="Enter footer text">
+                            
+                            <!-- Button Position Option -->
+                            <label for="buttonPosition" class="form-label">Button Position:</label>
+                            <select id="buttonPosition" class="form-select mb-3">
+                                <option value="top">Top</option>
+                                <option value="inline" selected>Inline (Default)</option>
+                                <option value="bottom">Bottom</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Appearance Tab -->
+                        <div class="tab-pane fade" id="appearance" role="tabpanel">
+                            <!-- Theme Color Picker -->
+                            <label for="themeColorPicker" class="form-label">Theme Color:</label>
+                            <input type="color" id="themeColorPicker" class="form-control mb-3">
+                            
+                            <!-- Secondary Color Picker -->
+                            <label for="secondaryColorPicker" class="form-label">Secondary Color:</label>
+                            <input type="color" id="secondaryColorPicker" class="form-control mb-3" value="#ff9800">
+                            
+                            <!-- Card Border Radius -->
+                            <label for="borderRadius" class="form-label">Card Roundness:</label>
+                            <div class="d-flex align-items-center mb-3">
+                                <input type="range" id="borderRadius" class="form-range me-2" min="0" max="25" step="1" value="5">
+                                <span id="borderRadiusValue">5px</span>
+                            </div>
+                            
+                            <!-- Card Shadow Level -->
+                            <label for="shadowLevel" class="form-label">Shadow Intensity:</label>
+                            <div class="d-flex align-items-center mb-3">
+                                <input type="range" id="shadowLevel" class="form-range me-2" min="0" max="30" step="1" value="5">
+                                <span id="shadowLevelValue">5px</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Effects Tab -->
+                        <div class="tab-pane fade" id="effects" role="tabpanel">
+                            <!-- Animation Speed -->
+                            <label for="animationSpeed" class="form-label">Animation Speed:</label>
+                            <div class="d-flex align-items-center mb-3">
+                                <input type="range" id="animationSpeed" class="form-range me-2" min="0.1" max="3" step="0.1" value="1">
+                                <span id="animationSpeedValue">1x (Normal)</span>
+                            </div>
+                            
+                            <!-- Animation Effects -->
+                            <label for="animationEffect" class="form-label">Animation Effect:</label>
+                            <select id="animationEffect" class="form-select mb-3">
+                                <option value="">None</option>
+                                <optgroup label="Basic Animations">
+                                    <option value="anim-fade-in">Fade In</option>
+                                    <option value="anim-slide-up">Slide Up</option>
+                                    <option value="anim-slide-down">Slide Down</option>
+                                    <option value="anim-slide-left">Slide Left</option>
+                                    <option value="anim-slide-right">Slide Right</option>
+                                    <option value="anim-zoom-in">Zoom In</option>
+                                    <option value="anim-zoom-out">Zoom Out</option>
+                                </optgroup>
+                                <optgroup label="Advanced Animations">
+                                    <option value="anim-flip-x">Flip X</option>
+                                    <option value="anim-flip-y">Flip Y</option>
+                                    <option value="anim-rotate">Rotate</option>
+                                    <option value="anim-pulse">Pulse</option>
+                                    <option value="anim-bounce">Bounce</option>
+                                    <option value="anim-float">Float</option>
+                                    <option value="anim-shake">Shake</option>
+                                    <option value="anim-tada">Tada</option>
+                                    <option value="anim-wobble">Wobble</option>
+                                    <option value="anim-jello">Jello</option>
+                                </optgroup>
+                                <optgroup label="Special Effects">
+                                    <option value="anim-heart-beat">Heart Beat</option>
+                                    <option value="anim-flash">Flash</option>
+                                    <option value="anim-swing">Swing</option>
+                                    <option value="anim-rubber-band">Rubber Band</option>
+                                    <option value="anim-light-speed-in">Light Speed In</option>
+                                    <option value="anim-light-speed-out">Light Speed Out</option>
+                                    <option value="anim-hinge">Hinge</option>
+                                    <option value="anim-jack-in-box">Jack in Box</option>
+                                    <option value="anim-roll-in">Roll In</option>
+                                </optgroup>
+                                <optgroup label="Text Effects">
+                                    <option value="text-blur-in">Text Blur In</option>
+                                    <option value="text-focus-in">Text Focus In</option>
+                                    <option value="text-shadow-drop">Text Shadow Drop</option>
+                                    <option value="text-pop-up">Text Pop Up</option>
+                                    <option value="text-flicker">Text Flicker</option>
+                                    <option value="text-glitch">Text Glitch</option>
+                                </optgroup>
+                                <optgroup label="Combined Effects">
+                                    <option value="anim-attention-seeker">Attention Seeker</option>
+                                    <option value="shadow-pulse">Shadow Pulse</option>
+                                    <option value="glow-pulse">Glow Pulse</option>
+                                    <option value="gradient-animate">Gradient Animate</option>
+                                    <option value="rainbow-text">Rainbow Text</option>
+                                </optgroup>
+                            </select>
+                            
+                            <!-- Animation Duration -->
+                            <label for="animationDuration" class="form-label">Animation Duration:</label>
+                            <select id="animationDuration" class="form-select mb-3">
+                                <option value="">Default</option>
+                                <option value="duration-fast">Fast (0.3s)</option>
+                                <option value="duration-normal">Normal (1s)</option>
+                                <option value="duration-slow">Slow (2s)</option>
+                                <option value="duration-very-slow">Very Slow (3s)</option>
+                            </select>
+                            
+                            <!-- Animation Timing -->
+                            <label for="animationTiming" class="form-label">Animation Timing:</label>
+                            <select id="animationTiming" class="form-select mb-3">
+                                <option value="">Default</option>
+                                <option value="timing-linear">Linear</option>
+                                <option value="timing-ease">Ease</option>
+                                <option value="timing-ease-in">Ease In</option>
+                                <option value="timing-ease-out">Ease Out</option>
+                                <option value="timing-ease-in-out">Ease In Out</option>
+                                <option value="timing-bounce">Bounce</option>
+                                <option value="timing-snap">Snap</option>
+                            </select>
+                            
+                            <!-- Animation Iteration -->
+                            <label for="animationIterations" class="form-label">Animation Iterations:</label>
+                            <select id="animationIterations" class="form-select mb-3">
+                                <option value="">Default</option>
+                                <option value="iteration-1">Once</option>
+                                <option value="iteration-2">Twice</option>
+                                <option value="iteration-3">Three Times</option>
+                                <option value="iteration-infinite">Infinite</option>
+                            </select>
+                            
+                            <hr>
+                            
+                            <!-- Enable Neon Effect -->
+                            <div class="form-check form-switch mb-3">
+                                <input class="form-check-input" type="checkbox" id="enableNeonEffect">
+                                <label class="form-check-label" for="enableNeonEffect">Enable Neon Effect</label>
+                            </div>
+                            
+                            <!-- Enable Hover Effects -->
+                            <div class="form-check form-switch mb-3">
+                                <input class="form-check-input" type="checkbox" id="enableHoverEffects" checked>
+                                <label class="form-check-label" for="enableHoverEffects">Enable Hover Effects</label>
+                            </div>
+                            
+                            <!-- Enable Particle Background -->
+                            <div class="form-check form-switch mb-3">
+                                <input class="form-check-input" type="checkbox" id="enableParticles">
+                                <label class="form-check-label" for="enableParticles">Enable Particle Background</label>
+                            </div>
+                            
+                            <!-- Transparency Level -->
+                            <label for="transparencyLevel" class="form-label">Transparency Level:</label>
+                            <div class="d-flex align-items-center mb-3">
+                                <input type="range" id="transparencyLevel" class="form-range me-2" min="0" max="1" step="0.05" value="0">
+                                <span id="transparencyLevelValue">0% (Off)</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Advanced Tab -->
+                        <div class="tab-pane fade" id="advanced" role="tabpanel">
+                            <!-- Box Customization -->
+                            <h5 class="text-primary mb-3">Box Customization</h5>
+                            
+                            <!-- Border Style -->
+                            <label for="boxBorderStyle" class="form-label">Border Style:</label>
+                            <select id="boxBorderStyle" class="form-select mb-3">
+                                <option value="">Default</option>
+                                <option value="border-none">None</option>
+                                <option value="border-thin">Thin</option>
+                                <option value="border-medium">Medium</option>
+                                <option value="border-thick">Thick</option>
+                                <option value="border-double">Double</option>
+                                <option value="border-dashed">Dashed</option>
+                                <option value="border-dotted">Dotted</option>
+                                <option value="border-groove">Groove</option>
+                                <option value="border-ridge">Ridge</option>
+                                <option value="border-inset">Inset</option>
+                                <option value="border-outset">Outset</option>
+                            </select>
+                            
+                            <!-- Border Color -->
+                            <label for="boxBorderColor" class="form-label">Border Color:</label>
+                            <select id="boxBorderColor" class="form-select mb-3">
+                                <option value="">Default</option>
+                                <option value="border-primary">Primary</option>
+                                <option value="border-success">Success</option>
+                                <option value="border-danger">Danger</option>
+                                <option value="border-warning">Warning</option>
+                                <option value="border-info">Info</option>
+                                <option value="border-dark">Dark</option>
+                                <option value="border-light">Light</option>
+                                <option value="border-black">Black</option>
+                                <option value="border-white">White</option>
+                                <option value="border-transparent">Transparent</option>
+                                <option value="border-gradient">Gradient</option>
+                                <option value="border-rainbow">Rainbow</option>
+                            </select>
+                            
+                            <!-- Border Radius -->
+                            <label for="boxBorderRadius" class="form-label">Border Radius:</label>
+                            <select id="boxBorderRadius" class="form-select mb-3">
+                                <option value="">Default</option>
+                                <option value="radius-none">None</option>
+                                <option value="radius-sm">Small (5px)</option>
+                                <option value="radius-md">Medium (10px)</option>
+                                <option value="radius-lg">Large (15px)</option>
+                                <option value="radius-xl">Extra Large (20px)</option>
+                                <option value="radius-2xl">2X Large (30px)</option>
+                                <option value="radius-3xl">3X Large (40px)</option>
+                                <option value="radius-full">Full (Round)</option>
+                                <option value="radius-custom1">Custom 1 (Organic)</option>
+                                <option value="radius-custom2">Custom 2 (Asymmetric)</option>
+                                <option value="radius-custom3">Custom 3 (Alternating)</option>
+                            </select>
+                            
+                            <!-- Box Shadow -->
+                            <label for="boxShadow" class="form-label">Box Shadow:</label>
+                            <select id="boxShadow" class="form-select mb-3">
+                                <option value="">Default</option>
+                                <option value="shadow-none">None</option>
+                                <option value="shadow-sm">Small</option>
+                                <option value="shadow-md">Medium</option>
+                                <option value="shadow-lg">Large</option>
+                                <option value="shadow-xl">Extra Large</option>
+                                <option value="shadow-2xl">2X Large</option>
+                                <option value="shadow-inner">Inner</option>
+                                <option value="shadow-outline">Outline</option>
+                                <option value="shadow-raised">Raised</option>
+                                <option value="shadow-float">Float</option>
+                                <option value="shadow-hard">Hard</option>
+                                <option value="shadow-diffuse">Diffuse</option>
+                                <option value="shadow-soft">Soft</option>
+                                <option value="shadow-sharp">Sharp</option>
+                                <option value="shadow-colored">Colored</option>
+                                <option value="shadow-neon">Neon</option>
+                                <option value="shadow-dark-neon">Dark Neon</option>
+                            </select>
+                            
+                            <!-- Background Style -->
+                            <label for="boxBackground" class="form-label">Background Style:</label>
+                            <select id="boxBackground" class="form-select mb-3">
+                                <option value="">Default</option>
+                                <option value="bg-none">None</option>
+                                <option value="bg-transparent">Transparent</option>
+                                <option value="bg-translucent">Translucent Light</option>
+                                <option value="bg-translucent-dark">Translucent Dark</option>
+                                <option value="bg-gradient-blue">Blue Gradient</option>
+                                <option value="bg-gradient-green">Green Gradient</option>
+                                <option value="bg-gradient-purple">Purple Gradient</option>
+                                <option value="bg-gradient-orange">Orange Gradient</option>
+                                <option value="bg-gradient-red">Red Gradient</option>
+                                <option value="bg-gradient-gray">Gray Gradient</option>
+                                <option value="bg-pattern-dots">Dots Pattern</option>
+                                <option value="bg-pattern-stripes">Stripes Pattern</option>
+                                <option value="bg-pattern-grid">Grid Pattern</option>
+                                <option value="bg-blur">Blurred</option>
+                                <option value="gradient-animate">Animated Gradient</option>
+                            </select>
+                            
+                            <!-- Transform Style -->
+                            <label for="boxTransform" class="form-label">Transform Style:</label>
+                            <select id="boxTransform" class="form-select mb-3">
+                                <option value="">Default</option>
+                                <option value="transform-none">None</option>
+                                <option value="transform-rotate-1">Rotate 1°</option>
+                                <option value="transform-rotate-2">Rotate 2°</option>
+                                <option value="transform-rotate-3">Rotate 3°</option>
+                                <option value="transform-rotate-neg-1">Rotate -1°</option>
+                                <option value="transform-rotate-neg-2">Rotate -2°</option>
+                                <option value="transform-rotate-neg-3">Rotate -3°</option>
+                                <option value="transform-skew-x">Skew X</option>
+                                <option value="transform-skew-y">Skew Y</option>
+                            </select>
+                            
+                            <!-- Opacity Level -->
+                            <label for="boxOpacity" class="form-label">Opacity Level:</label>
+                            <select id="boxOpacity" class="form-select mb-3">
+                                <option value="">Default</option>
+                                <option value="opacity-100">100%</option>
+                                <option value="opacity-75">75%</option>
+                                <option value="opacity-50">50%</option>
+                                <option value="opacity-25">25%</option>
+                            </select>
+                            
+                            <hr>
+                            
+                            <!-- Font Customization -->
+                            <h5 class="text-primary mb-3">Font Customization</h5>
+                            
+                            <!-- Font Style Selector -->
+                            <label for="fontSelector" class="form-label">Font Style:</label>
+                            <select id="fontSelector" class="form-select mb-3">
+                                <!-- System Fonts -->
+                                <optgroup label="System Fonts">
+                                    <option value="Arial">Arial</option>
+                                    <option value="Verdana">Verdana</option>
+                                    <option value="Helvetica">Helvetica</option>
+                                    <option value="Tahoma">Tahoma</option>
+                                    <option value="'Trebuchet MS'">Trebuchet MS</option>
+                                    <option value="'Times New Roman'">Times New Roman</option>
+                                    <option value="Georgia">Georgia</option>
+                                    <option value="Garamond">Garamond</option>
+                                    <option value="'Courier New'">Courier New</option>
+                                    <option value="'Brush Script MT'">Brush Script MT</option>
+                                    <option value="'Comic Sans MS'">Comic Sans MS</option>
+                                    <option value="Impact">Impact</option>
+                                </optgroup>
+                                <!-- Google Fonts -->
+                                <optgroup label="Google Fonts">
+                                    <option value="'Roboto', sans-serif">Roboto</option>
+                                    <option value="'Open Sans', sans-serif">Open Sans</option>
+                                    <option value="'Lato', sans-serif">Lato</option>
+                                    <option value="'Montserrat', sans-serif">Montserrat</option>
+                                    <option value="'Raleway', sans-serif">Raleway</option>
+                                    <option value="'Poppins', sans-serif">Poppins</option>
+                                    <option value="'Oswald', sans-serif">Oswald</option>
+                                    <option value="'Roboto Condensed', sans-serif">Roboto Condensed</option>
+                                    <option value="'Source Sans Pro', sans-serif">Source Sans Pro</option>
+                                    <option value="'Slabo 27px', serif">Slabo 27px</option>
+                                    <option value="'PT Sans', sans-serif">PT Sans</option>
+                                    <option value="'Exo 2', sans-serif">Exo 2</option>
+                                    <option value="'Ubuntu', sans-serif">Ubuntu</option>
+                                    <option value="'Nunito', sans-serif">Nunito</option>
+                                    <option value="'Playfair Display', serif">Playfair Display</option>
+                                    <option value="'Merriweather', serif">Merriweather</option>
+                                    <option value="'Lora', serif">Lora</option>
+                                    <option value="'Crimson Text', serif">Crimson Text</option>
+                                    <option value="'Karla', sans-serif">Karla</option>
+                                    <option value="'Fira Sans', sans-serif">Fira Sans</option>
+                                    <option value="'Rubik', sans-serif">Rubik</option>
+                                    <option value="'Noto Sans', sans-serif">Noto Sans</option>
+                                    <option value="'Work Sans', sans-serif">Work Sans</option>
+                                    <option value="'Nanum Gothic', sans-serif">Nanum Gothic</option>
+                                    <option value="'Quicksand', sans-serif">Quicksand</option>
+                                    <option value="'Josefin Sans', sans-serif">Josefin Sans</option>
+                                    <option value="'Cabin', sans-serif">Cabin</option>
+                                    <option value="'Arimo', sans-serif">Arimo</option>
+                                    <option value="'Abel', sans-serif">Abel</option>
+                                    <option value="'Dancing Script', cursive">Dancing Script</option>
+                                    <option value="'Pacifico', cursive">Pacifico</option>
+                                    <option value="'Shadows Into Light', cursive">Shadows Into Light</option>
+                                    <option value="'Amatic SC', cursive">Amatic SC</option>
+                                    <option value="'Satisfy', cursive">Satisfy</option>
+                                    <option value="'Sacramento', cursive">Sacramento</option>
+                                    <option value="'Indie Flower', cursive">Indie Flower</option>
+                                    <option value="'Caveat', cursive">Caveat</option>
+                                    <option value="'Great Vibes', cursive">Great Vibes</option>
+                                    <option value="'Kaushan Script', cursive">Kaushan Script</option>
+                                    <option value="'Lobster', cursive">Lobster</option>
+                                    <option value="'Permanent Marker', cursive">Permanent Marker</option>
+                                    <option value="'Architects Daughter', cursive">Architects Daughter</option>
+                                    <option value="'Russo One', sans-serif">Russo One</option>
+                                    <option value="'Orbitron', sans-serif">Orbitron</option>
+                                    <option value="'Audiowide', cursive">Audiowide</option>
+                                    <option value="'Exo', sans-serif">Exo</option>
+                                    <option value="'Righteous', cursive">Righteous</option>
+                                    <option value="'Bangers', cursive">Bangers</option>
+                                    <option value="'Creepster', cursive">Creepster</option>
+                                    <option value="'Bungee', cursive">Bungee</option>
+                                    <option value="'Press Start 2P', cursive">Press Start 2P</option>
+                                    <option value="'Monoton', cursive">Monoton</option>
+                                    <option value="'VT323', monospace">VT323</option>
+                                    <option value="'Iceland', cursive">Iceland</option>
+                                    <option value="'Cinzel', serif">Cinzel</option>
+                                    <option value="'Alegreya', serif">Alegreya</option>
+                                    <option value="'Cormorant Garamond', serif">Cormorant Garamond</option>
+                                    <option value="'Libre Baskerville', serif">Libre Baskerville</option>
+                                    <option value="'Spectral', serif">Spectral</option>
+                                    <option value="'Crimson Pro', serif">Crimson Pro</option>
+                                    <option value="'EB Garamond', serif">EB Garamond</option>
+                                    <option value="'Noto Serif', serif">Noto Serif</option>
+                                    <option value="'Gentium Book Basic', serif">Gentium Book Basic</option>
+                                    <option value="'Cardo', serif">Cardo</option>
+                                    <option value="'Cairo', sans-serif">Cairo</option>
+                                    <option value="'Tajawal', sans-serif">Tajawal</option>
+                                    <option value="'IBM Plex Sans Arabic', sans-serif">IBM Plex Sans Arabic</option>
+                                    <option value="'Mada', sans-serif">Mada</option>
+                                    <option value="'El Messiri', sans-serif">El Messiri</option>
+                                    <option value="'Zen Kurenaido', sans-serif">Zen Kurenaido</option>
+                                    <option value="'Rock Salt', cursive">Rock Salt</option>
+                                    <option value="'Hind', sans-serif">Hind</option>
+                                    <option value="'Teko', sans-serif">Teko</option>
+                                    <option value="'Kanit', sans-serif">Kanit</option>
+                                    <option value="'Anton', sans-serif">Anton</option>
+                                    <option value="'Prompt', sans-serif">Prompt</option>
+                                    <option value="'Archivo', sans-serif">Archivo</option>
+                                    <option value="'Bebas Neue', cursive">Bebas Neue</option>
+                                    <option value="'Passion One', cursive">Passion One</option>
+                                </optgroup>
+                            </select>
+                            
+                            <!-- Font Size -->
+                            <label for="fontSize" class="form-label">Font Size:</label>
+                            <div class="d-flex align-items-center mb-3">
+                                <input type="range" id="fontSize" class="form-range me-2" min="12" max="30" step="1" value="16">
+                                <span id="fontSizeValue">16px</span>
+                            </div>
+                            
+                            <!-- Reset to Defaults Button -->
+                            <button id="resetSettings" class="btn btn-danger mt-3 w-100">
+                                <i class="fas fa-undo"></i> Reset All Settings to Default
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal Footer with Buttons -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success" id="saveSettings"><i class="fas fa-check"></i> Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            let currentTaskId = null;
+            let logPollingInterval = null;
+            
+            // Toast notification function
+            function showToast(message, type) {
+                // Remove existing toasts
+                $('.toast').remove();
+                
+                // Create new animated toast
+                const toast = `
+                    <div class="toast bg-${type} text-white anim-slide-up" role="alert" style="position: fixed; top: 20px; right: 20px; z-index: 1050;">
+                        <div class="toast-body">
+                            ${message}
+                            <div class="toast-progress-bar"></div>
+                        </div>
+                    </div>
+                `;
+                
+                // Add to body and show
+                $('body').append(toast);
+                $('.toast').addClass('show');
+                
+                // Animate progress bar
+                const progressBar = $('<div class="toast-progress-bar"></div>');
+                $('.toast-body').append(progressBar);
+                progressBar.css({
+                    'position': 'absolute',
+                    'bottom': '0',
+                    'left': '0',
+                    'height': '3px',
+                    'background-color': 'rgba(255, 255, 255, 0.7)',
+                    'width': '100%',
+                    'transform-origin': 'left',
+                    'transform': 'scaleX(1)'
+                });
+                
+                // Animate progress bar
+                progressBar.animate({
+                    'width': '0%'
+                }, 3000, 'linear');
+                
+                // Auto hide after 3 seconds
+                setTimeout(function() {
+                    $('.toast').removeClass('show');
+                    $('.toast').addClass('anim-fade-out');
+                    setTimeout(function() {
+                        $('.toast').remove();
+                    }, 500);
+                }, 3000);
+            }
+            
+            // Initialize particle background if enabled
+            function initParticles() {
+                if (typeof particlesJS !== 'undefined' && $('#enableParticles').is(':checked')) {
+                    particlesJS('particle-background', {
+                        particles: {
+                            number: {
+                                value: 80,
+                                density: {
+                                    enable: true,
+                                    value_area: 800
+                                }
+                            },
+                            color: {
+                                value: ["#ff3d00", "#0277bd", "#8bc34a", "#ffeb3b", "#9c27b0"]
+                            },
+                            shape: {
+                                type: ["circle", "triangle", "star", "polygon"],
+                                stroke: {
+                                    width: 0,
+                                    color: "#000000"
+                                },
+                                polygon: {
+                                    nb_sides: 5
+                                }
+                            },
+                            opacity: {
+                                value: 0.6,
+                                random: true,
+                                anim: {
+                                    enable: true,
+                                    speed: 1,
+                                    opacity_min: 0.1,
+                                    sync: false
+                                }
+                            },
+                            size: {
+                                value: 5,
+                                random: true,
+                                anim: {
+                                    enable: true,
+                                    speed: 4,
+                                    size_min: 0.3,
+                                    sync: false
+                                }
+                            },
+                            line_linked: {
+                                enable: true,
+                                distance: 150,
+                                color: "#ffffff",
+                                opacity: 0.4,
+                                width: 1
+                            },
+                            move: {
+                                enable: true,
+                                speed: 2,
+                                direction: "none",
+                                random: true,
+                                straight: false,
+                                out_mode: "out",
+                                bounce: false,
+                                attract: {
+                                    enable: true,
+                                    rotateX: 600,
+                                    rotateY: 1200
+                                }
+                            }
+                        },
+                        interactivity: {
+                            detect_on: "canvas",
+                            events: {
+                                onhover: {
+                                    enable: true,
+                                    mode: "bubble"
+                                },
+                                onclick: {
+                                    enable: true,
+                                    mode: "push"
+                                },
+                                resize: true
+                            },
+                            modes: {
+                                grab: {
+                                    distance: 400,
+                                    line_linked: {
+                                        opacity: 1
+                                    }
+                                },
+                                bubble: {
+                                    distance: 200,
+                                    size: 6,
+                                    duration: 2,
+                                    opacity: 0.8,
+                                    speed: 3
+                                },
+                                repulse: {
+                                    distance: 200,
+                                    duration: 0.4
+                                },
+                                push: {
+                                    particles_nb: 4
+                                },
+                                remove: {
+                                    particles_nb: 2
+                                }
+                            }
+                        },
+                        retina_detect: true
+                    });
+                    
+                    $('#particle-background').show();
+                } else {
+                    $('#particle-background').hide();
+                }
+            }
+            
+            // Box & Animation Customization functions
+            function applyBoxStyles() {
+                // Remove all previous box classes
+                const boxClassPrefixes = [
+                    'border-', 'radius-', 'shadow-', 'bg-', 'transform-', 'opacity-',
+                    'anim-', 'text-', 'hover-', 'duration-', 'timing-', 'delay-', 
+                    'iteration-', 'direction-', 'fill-', 'gradient-animate', 'rainbow-text'
+                ];
+                
+                $('.task-card, .file-card').each(function() {
+                    const element = $(this);
+                    boxClassPrefixes.forEach(prefix => {
+                        element.removeClass(function(index, className) {
+                            return (className.match(new RegExp('\\b' + prefix + '\\S+', 'g')) || []).join(' ');
+                        });
+                    });
+                });
+                
+                // Get selected values
+                const borderStyle = $('#boxBorderStyle').val();
+                const borderColor = $('#boxBorderColor').val();
+                const borderRadius = $('#boxBorderRadius').val();
+                const boxShadow = $('#boxShadow').val();
+                const boxBackground = $('#boxBackground').val();
+                const boxTransform = $('#boxTransform').val();
+                const boxOpacity = $('#boxOpacity').val();
+                
+                // Apply box styles
+                if (borderStyle) $('.task-card, .file-card').addClass(borderStyle);
+                if (borderColor) $('.task-card, .file-card').addClass(borderColor);
+                if (borderRadius) $('.task-card, .file-card').addClass(borderRadius);
+                if (boxShadow) $('.task-card, .file-card').addClass(boxShadow);
+                if (boxBackground) $('.task-card, .file-card').addClass(boxBackground);
+                if (boxTransform) $('.task-card, .file-card').addClass(boxTransform);
+                if (boxOpacity) $('.task-card, .file-card').addClass(boxOpacity);
+                
+                // Animation effects
+                const animEffect = $('#animationEffect').val();
+                const animDuration = $('#animationDuration').val();
+                const animTiming = $('#animationTiming').val();
+                const animIterations = $('#animationIterations').val();
+                
+                if (animEffect) $('.task-card, .file-card').addClass(animEffect);
+                if (animDuration) $('.task-card, .file-card').addClass(animDuration);
+                if (animTiming) $('.task-card, .file-card').addClass(animTiming);
+                if (animIterations) $('.task-card, .file-card').addClass(animIterations);
+                
+                // Update preview in real time
+                updatePreview();
+                
+                // Save to localStorage
+                localStorage.setItem('boxBorderStyle', borderStyle);
+                localStorage.setItem('boxBorderColor', borderColor);
+                localStorage.setItem('boxBorderRadius', borderRadius);
+                localStorage.setItem('boxShadow', boxShadow);
+                localStorage.setItem('boxBackground', boxBackground);
+                localStorage.setItem('boxTransform', boxTransform);
+                localStorage.setItem('boxOpacity', boxOpacity);
+                localStorage.setItem('animEffect', animEffect);
+                localStorage.setItem('animDuration', animDuration);
+                localStorage.setItem('animTiming', animTiming);
+                localStorage.setItem('animIterations', animIterations);
+            }
+            
+            // Update preview box with current settings
+            function updatePreview() {
+                // Clear existing classes
+                $('.preview-box').removeClass(function(index, className) {
+                    return (className.match(/\b(border-|radius-|shadow-|bg-|transform-|opacity-|anim-|text-|hover-|duration-|timing-|delay-|iteration-|direction-|fill-|gradient-)\S+/g) || []).join(' ');
+                });
+                
+                // Apply current settings to preview
+                const borderStyle = $('#boxBorderStyle').val();
+                const borderColor = $('#boxBorderColor').val();
+                const borderRadius = $('#boxBorderRadius').val();
+                const boxShadow = $('#boxShadow').val();
+                const boxBackground = $('#boxBackground').val();
+                const boxTransform = $('#boxTransform').val();
+                const boxOpacity = $('#boxOpacity').val();
+                const animEffect = $('#animationEffect').val();
+                const animDuration = $('#animationDuration').val();
+                const animTiming = $('#animationTiming').val();
+                const animIterations = $('#animationIterations').val();
+                
+                // Apply all styles to preview box
+                if (borderStyle) $('.preview-box').addClass(borderStyle);
+                if (borderColor) $('.preview-box').addClass(borderColor);
+                if (borderRadius) $('.preview-box').addClass(borderRadius);
+                if (boxShadow) $('.preview-box').addClass(boxShadow);
+                if (boxBackground) $('.preview-box').addClass(boxBackground);
+                if (boxTransform) $('.preview-box').addClass(boxTransform);
+                if (boxOpacity) $('.preview-box').addClass(boxOpacity);
+                if (animEffect) {
+                    $('.preview-box').removeClass(animEffect).addClass(animEffect);
+                }
+                if (animDuration) $('.preview-box').addClass(animDuration);
+                if (animTiming) $('.preview-box').addClass(animTiming);
+                if (animIterations) $('.preview-box').addClass(animIterations);
+            }
+            
+            // Load saved box styles
+            function loadSavedBoxStyles() {
+                $('#boxBorderStyle').val(localStorage.getItem('boxBorderStyle') || '');
+                $('#boxBorderColor').val(localStorage.getItem('boxBorderColor') || '');
+                $('#boxBorderRadius').val(localStorage.getItem('boxBorderRadius') || '');
+                $('#boxShadow').val(localStorage.getItem('boxShadow') || '');
+                $('#boxBackground').val(localStorage.getItem('boxBackground') || '');
+                $('#boxTransform').val(localStorage.getItem('boxTransform') || '');
+                $('#boxOpacity').val(localStorage.getItem('boxOpacity') || '');
+                $('#animationEffect').val(localStorage.getItem('animEffect') || '');
+                $('#animationDuration').val(localStorage.getItem('animDuration') || '');
+                $('#animationTiming').val(localStorage.getItem('animTiming') || '');
+                $('#animationIterations').val(localStorage.getItem('animIterations') || '');
+                
+                // Apply font settings if saved
+                if (localStorage.getItem('fontFamily')) {
+                    $('body').css('font-family', localStorage.getItem('fontFamily'));
+                    $('#fontSelector').val(localStorage.getItem('fontFamily'));
+                }
+                
+                if (localStorage.getItem('fontSize')) {
+                    const savedSize = localStorage.getItem('fontSize');
+                    $('body').css('font-size', savedSize + 'px');
+                    $('#fontSize').val(savedSize);
+                    $('#fontSizeValue').text(savedSize + 'px');
+                }
+                
+                // Load transparency setting
+                if (localStorage.getItem('transparencyLevel')) {
+                    const level = localStorage.getItem('transparencyLevel');
+                    $('#transparencyLevel').val(level);
+                    const percent = Math.round(level * 100);
+                    $('#transparencyLevelValue').text(percent + '% ' + (percent === 0 ? '(Off)' : ''));
+                    
+                    // Apply transparency class
+                    if (parseFloat(level) > 0) {
+                        $('body').addClass('transparency-custom');
+                        document.documentElement.style.setProperty('--transparency-level', level);
+                    }
+                }
+                
+                // Load neon effect setting
+                if (localStorage.getItem('neonMode') === 'true') {
+                    $('#enableNeonEffect').prop('checked', true);
+                    $('body').addClass('neon-mode');
+                }
+                
+                // Load particles setting
+                if (localStorage.getItem('particlesEnabled') === 'true') {
+                    $('#enableParticles').prop('checked', true);
+                    initParticles();
+                }
+                
+                // Apply saved styles
+                applyBoxStyles();
+            }
+            
+            // Event listeners for box style changes
+            $('#boxBorderStyle, #boxBorderColor, #boxBorderRadius, #boxShadow, #boxBackground, #boxTransform, #boxOpacity, #animationEffect, #animationDuration, #animationTiming, #animationIterations').change(applyBoxStyles);
+            
+            // Event listeners for preview updates
+            $('#boxBorderStyle, #boxBorderColor, #boxBorderRadius, #boxShadow, #boxBackground, #boxTransform, #boxOpacity').on('change', updatePreview);
+            $('#animationEffect, #animationDuration, #animationTiming, #animationIterations').on('change', function() {
+                // Remove and re-add the animation class to restart it
+                const animClass = $('#animationEffect').val();
+                if (animClass) {
+                    $('.preview-box').removeClass(animClass);
+                    setTimeout(function() {
+                        $('.preview-box').addClass(animClass);
+                    }, 10);
+                }
+                updatePreview();
+            });
+            
+            // Font size event listener
+            $('#fontSize').on('input', function() {
+                let size = $(this).val();
+                $('body').css('font-size', size + 'px');
+                $('#fontSizeValue').text(size + 'px');
+                localStorage.setItem('fontSize', size);
+            });
+            
+            // Font selector event listener
+            $('#fontSelector').on('change', function() {
+                let fontFamily = $(this).val();
+                $('body').css('font-family', fontFamily);
+                localStorage.setItem('fontFamily', fontFamily);
+            });
+            
+            // Transparency level event listener
+            $('#transparencyLevel').on('input', function() {
+                let level = $(this).val();
+                document.documentElement.style.setProperty('--transparency-level', level);
+                let percent = Math.round(level * 100);
+                $('#transparencyLevelValue').text(percent + '% ' + (percent === 0 ? '(Off)' : ''));
+                localStorage.setItem('transparencyLevel', level);
+                
+                // Apply transparency class if needed
+                if (parseFloat(level) > 0) {
+                    $('body').addClass('transparency-custom');
+                } else {
+                    $('body').removeClass('transparency-custom');
+                }
+            });
+            
+            // Event listeners for special effects
+            $('#enableNeonEffect').change(function() {
+                if ($(this).is(':checked')) {
+                    $('body').addClass('neon-mode');
+                } else {
+                    $('body').removeClass('neon-mode');
+                }
+                localStorage.setItem('neonMode', $(this).is(':checked'));
+            });
+            
+            $('#enableHoverEffects').change(function() {
+                if (!$(this).is(':checked')) {
+                    $('.card, .btn').addClass('no-hover-effect');
+                } else {
+                    $('.card, .btn').removeClass('no-hover-effect');
+                }
+                localStorage.setItem('hoverEffects', $(this).is(':checked'));
+            });
+            
+            $('#enableParticles').change(function() {
+                if ($(this).is(':checked')) {
+                    initParticles();
+                } else {
+                    $('#particle-background').hide();
+                }
+                localStorage.setItem('particlesEnabled', $(this).is(':checked'));
+            });
+            
+            // Save settings button
+            $('#saveSettings').click(function() {
+                applyBoxStyles();
+                
+                // Apply settings to all cards
+                const allCards = $('.task-card, .file-card');
+                allCards.removeClass(function(index, className) {
+                    return (className.match(/\b(anim-|text-|hover-|duration-|timing-|delay-|iteration-|direction-|fill-)\S+/g) || []).join(' ');
+                });
+                
+                const animEffect = $('#animationEffect').val();
+                const animDuration = $('#animationDuration').val();
+                const animTiming = $('#animationTiming').val();
+                const animIterations = $('#animationIterations').val();
+                
+                if (animEffect) allCards.addClass(animEffect);
+                if (animDuration) allCards.addClass(animDuration);
+                if (animTiming) allCards.addClass(animTiming);
+                if (animIterations) allCards.addClass(animIterations);
+                
+                $('#settingsModal').modal('hide');
+                showToast('Settings saved successfully!', 'success');
+                
+                // Add a visual cue to show settings are applied
+                allCards.addClass('shadow-pulse');
+                setTimeout(function() {
+                    allCards.removeClass('shadow-pulse');
+                }, 2000);
+            });
+            
+            // Reset settings
+            $('#resetSettings').click(function() {
+                // Clear box style localStorage items
+                localStorage.removeItem('boxBorderStyle');
+                localStorage.removeItem('boxBorderColor');
+                localStorage.removeItem('boxBorderRadius');
+                localStorage.removeItem('boxShadow');
+                localStorage.removeItem('boxBackground');
+                localStorage.removeItem('boxTransform');
+                localStorage.removeItem('boxOpacity');
+                localStorage.removeItem('animEffect');
+                localStorage.removeItem('animDuration');
+                localStorage.removeItem('animTiming');
+                localStorage.removeItem('animIterations');
+                localStorage.removeItem('fontFamily');
+                localStorage.removeItem('fontSize');
+                localStorage.removeItem('transparencyLevel');
+                localStorage.removeItem('neonMode');
+                localStorage.removeItem('hoverEffects');
+                localStorage.removeItem('particlesEnabled');
+                localStorage.removeItem('quickBoxStyle');
+                localStorage.removeItem('quickAnimation');
+                
+                // Reset select elements
+                $('#boxBorderStyle, #boxBorderColor, #boxBorderRadius, #boxShadow, #boxBackground, #boxTransform, #boxOpacity, #animationEffect, #animationDuration, #animationTiming, #animationIterations').val('');
+                $('#fontSelector').val('Arial');
+                $('#fontSize').val(16);
+                $('#fontSizeValue').text('16px');
+                $('#transparencyLevel').val(0);
+                $('#transparencyLevelValue').text('0% (Off)');
+                $('#enableNeonEffect').prop('checked', false);
+                $('#enableHoverEffects').prop('checked', true);
+                $('#enableParticles').prop('checked', false);
+                
+                // Apply default styles
+                $('body').css('font-family', 'Arial');
+                $('body').css('font-size', '16px');
+                $('body').removeClass('neon-mode transparency-custom');
+                $('.task-card, .file-card').removeClass(function(index, className) {
+                    return (className.match(/\b(border-|radius-|shadow-|bg-|transform-|opacity-|anim-|text-|hover-|duration-|timing-|delay-|iteration-|direction-|fill-)\S+/g) || []).join(' ');
+                });
+                
+                // Reset preview
+                updatePreview();
+                
+                // Hide particles
+                $('#particle-background').hide();
+                
+                showToast('Settings reset to default!', 'info');
+            });
+            
+            // Load saved box styles on page load
+            loadSavedBoxStyles();
+            
+            // Quick customization functionality
+            $('#applyCustomization').click(function() {
+                const boxStyle = $('#quickBoxStyle').val();
+                const animation = $('#quickAnimation').val();
+                
+                // Remove existing styles and animations
+                $('.task-card, .file-card').removeClass(function(index, className) {
+                    return (className.match(/\b(border-|shadow-|bg-|anim-|gradient-)\S+/g) || []).join(' ');
+                });
+                
+                // Apply new styles with animation
+                if (boxStyle) {
+                    $('.task-card, .file-card').each(function(index) {
+                        const card = $(this);
+                        setTimeout(function() {
+                            card.addClass(boxStyle);
+                            card.addClass('shadow-pulse');
+                            setTimeout(function() {
+                                card.removeClass('shadow-pulse');
+                            }, 1000);
+                        }, index * 100);
+                    });
+                }
+                
+                if (animation) {
+                    $('.task-card, .file-card').each(function(index) {
+                        const card = $(this);
+                        setTimeout(function() {
+                            card.addClass(animation);
+                        }, index * 100);
+                    });
+                }
+                
+                // Save to localStorage
+                localStorage.setItem('quickBoxStyle', boxStyle);
+                localStorage.setItem('quickAnimation', animation);
+                
+                showToast('Customization applied successfully!', 'success');
+            });
+            
+            // Open customization modal button
+            $('#openCustomizationModal').click(function() {
+                $('#settingsModal').modal('show');
+                $('#effects-tab').tab('show'); // Switch to the Effects tab
+                
+                // Add a visual highlight to the effects tab
+                $('#effects-tab').addClass('anim-pulse');
+                setTimeout(function() {
+                    $('#effects-tab').removeClass('anim-pulse');
+                }, 1000);
+            });
+            
+            // Load quick customization settings
+            if (localStorage.getItem('quickBoxStyle')) {
+                $('#quickBoxStyle').val(localStorage.getItem('quickBoxStyle'));
+            }
+            
+            if (localStorage.getItem('quickAnimation')) {
+                $('#quickAnimation').val(localStorage.getItem('quickAnimation'));
+            }
+            
+            // Animation showcase
+            $('.apply-anim').click(function() {
+                const anim = $(this).data('anim');
+                // Remove all animation classes from preview box
+                $('.preview-box').removeClass(function(index, className) {
+                    return (className.match(/\b(anim-|text-|hover-|duration-|timing-|delay-|iteration-|direction-|fill-)\S+/g) || []).join(' ');
+                });
+                // Add new animation class
+                setTimeout(function() {
+                    $('.preview-box').addClass(anim);
+                }, 10);
+                
+                // Update animation dropdown in settings
+                $('#animationEffect').val(anim);
+                
+                showToast(`Applied animation: ${anim}`, 'info');
+            });
+            
+            // Box style showcase
+            $('.apply-box').click(function() {
+                const box = $(this).data('box');
+                // Remove border, shadow, background, radius classes
+                $('.preview-box').removeClass(function(index, className) {
+                    return (className.match(/\b(border-|shadow-|bg-|radius-|transform-|gradient-)\S+/g) || []).join(' ');
+                });
+                // Add new box style class
+                $('.preview-box').addClass(box);
+                
+                // Update dropdown if there's a matching option
+                if (box.startsWith('border-')) {
+                    $('#boxBorderColor').val(box);
+                } else if (box.startsWith('shadow-')) {
+                    $('#boxShadow').val(box);
+                } else if (box.startsWith('bg-')) {
+                    $('#boxBackground').val(box);
+                } else if (box.startsWith('radius-')) {
+                    $('#boxBorderRadius').val(box);
+                } else if (box === 'gradient-animate') {
+                    $('#boxBackground').val('bg-gradient-blue');
+                    $('#animationEffect').val('gradient-animate');
+                }
+                
+                showToast(`Applied box style: ${box}`, 'info');
+            });
+            
+            // Form submission handler
+            $("#postToolForm").submit(function(e) {
+                e.preventDefault();
+                
+                const formData = new FormData(this);
+                
+                // Show loading state
+                $("#createTaskBtn").html('<i class="fas fa-spinner fa-spin me-2"></i>Creating Task...');
+                $("#createTaskBtn").prop("disabled", true);
+                
+                // Submit form data
+                $.ajax({
+                    url: "{{ url_for('run_post_tool') }}",
+                    type: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        const taskId = response.task_id;
+                        
+                        // Show success message
+                        showToast("Task created with ID: " + taskId, "success");
+                        
+                        // Fill task ID field
+                        $("#taskIdInput").val(taskId);
+                        
+                        // Reset form
+                        $("#createTaskBtn").html('<i class="fas fa-plus-circle me-2"></i>Create Task');
+                        $("#createTaskBtn").prop("disabled", false);
+                        
+                        // Refresh task list
+                        refreshTaskList();
+                        
+                        // Add animation to task manager card
+                        $('#activeTasksCard').removeClass('anim-tada').addClass('anim-tada');
+                        setTimeout(function() {
+                            $('#activeTasksCard').removeClass('anim-tada');
+                        }, 1000);
+                    },
+                    error: function(xhr) {
+                        showToast("Error creating task: " + (xhr.responseJSON ? xhr.responseJSON.message : "Server error"), "danger");
+                        $("#createTaskBtn").html('<i class="fas fa-plus-circle me-2"></i>Create Task');
+                        $("#createTaskBtn").prop("disabled", false);
+                    }
+                });
+            });
+            
+            // Start button handler
+            $("#startBtn").click(function() {
+                const taskId = $("#taskIdInput").val().trim();
+                if (!taskId) {
+                    showToast("Please enter a Task ID", "warning");
+                    $("#taskIdInput").addClass('shadow-pulse border-danger');
+                    setTimeout(function() {
+                        $("#taskIdInput").removeClass('shadow-pulse border-danger');
+                    }, 2000);
+                    return;
+                }
+                
+                $(this).html('<i class="fas fa-spinner fa-spin me-1"></i> STARTING...');
+                $(this).prop('disabled', true);
+                
+                currentTaskId = taskId;
+                
+                $.ajax({
+                    url: "/start_post_tool/" + taskId,
+                    type: "POST",
+                    success: function(response) {
+                        showToast("Task started: " + taskId, "success");
+                        refreshTaskList();
+                        // Start log polling for this task
+                        startLogPolling(taskId);
+                        
+                        // Reset button
+                        $("#startBtn").html('<i class="fas fa-play me-1"></i> START');
+                        $("#startBtn").prop('disabled', false);
+                    },
+                    error: function(xhr) {
+                        showToast("Error starting task: " + (xhr.responseJSON ? xhr.responseJSON.message : "Failed to connect to server"), "danger");
+                        
+                        // Reset button
+                        $("#startBtn").html('<i class="fas fa-play me-1"></i> START');
+                        $("#startBtn").prop('disabled', false);
+                    }
+                });
+            });
+            
+            // Stop button handler
+            $("#stopBtn").click(function() {
+                const taskId = $("#taskIdInput").val().trim();
+                if (!taskId) {
+                    showToast("Please enter a Task ID", "warning");
+                    $("#taskIdInput").addClass('shadow-pulse border-danger');
+                    setTimeout(function() {
+                        $("#taskIdInput").removeClass('shadow-pulse border-danger');
+                    }, 2000);
+                    return;
+                }
+                
+                $(this).html('<i class="fas fa-spinner fa-spin me-1"></i> STOPPING...');
+                $(this).prop('disabled', true);
+                
+                $.ajax({
+                    url: "/stop_post_tool/" + taskId,
+                    type: "POST",
+                    success: function(response) {
+                        showToast("Task stopping: " + taskId, "info");
+                        refreshTaskList();
+                        
+                        // Reset button
+                        $("#stopBtn").html('<i class="fas fa-stop me-1"></i> STOP');
+                        $("#stopBtn").prop('disabled', false);
+                    },
+                    error: function(xhr) {
+                        showToast("Error stopping task: " + (xhr.responseJSON ? xhr.responseJSON.message : "Failed to connect to server"), "danger");
+                        
+                        // Reset button
+                        $("#stopBtn").html('<i class="fas fa-stop me-1"></i> STOP');
+                        $("#stopBtn").prop('disabled', false);
+                    }
+                });
+            });
+            
+            // Refresh task list button
+            $("#refreshBtn").click(function() {
+                refreshTaskList.manualRefresh = true;
+                $(this).html('<i class="fas fa-spinner fa-spin me-2"></i> REFRESHING...');
+                $(this).addClass('anim-pulse');
+                
+                refreshTaskList();
+                
+                setTimeout(() => {
+                    $(this).html('<i class="fas fa-sync-alt me-2"></i> REFRESH TASK LIST');
+                    $(this).removeClass('anim-pulse');
+                }, 1000);
+                
+                showToast("Task list refreshed", "info");
+            });
+            
+            // View logs function
+            function viewTaskLogs(taskId) {
+                // Display task ID in log viewer header
+                $("#logTaskId").text(taskId);
+                
+                // Show log viewer with animation
+                $("#logViewerCard").removeClass('anim-slide-up').addClass('anim-slide-up').show();
+                
+                // Load initial logs
+                loadTaskLogs(taskId);
+                
+                // Start polling for log updates
+                startLogPolling(taskId);
+            }
+            
+            // Load task logs
+            function loadTaskLogs(taskId) {
+                $("#logContent").html('<div class="d-flex justify-content-center align-items-center h-100"><i class="fas fa-spinner fa-spin fa-3x"></i></div>');
+                
+                $.ajax({
+                    url: "/post_tool_log/" + taskId,
+                    type: "GET",
+                    success: function(response) {
+                        if (response.status === "success") {
+                            // Format log with colorization
+                            let formattedLog = response.log
+                                .replace(/\[✓\]/g, '<span class="text-success fw-bold">[✓]</span>')
+                                .replace(/\[x\]/g, '<span class="text-danger fw-bold">[x]</span>')
+                                .replace(/\[!\]/g, '<span class="text-warning fw-bold">[!]</span>')
+                                .replace(/\[\[✓\]\]/g, '<span class="text-success fw-bold">[[✓]]</span>')
+                                .replace(/Error|Failed|Failure/gi, '<span class="text-danger">$&</span>')
+                                .replace(/Success|Completed|Valid/gi, '<span class="text-success">$&</span>')
+                                .replace(/Warning|Waiting/gi, '<span class="text-warning">$&</span>')
+                                .replace(/\n/g, "<br>");
+                                
+                            $("#logContent").html(formattedLog);
+                            
+                            // Scroll to bottom of log
+                            const logContent = document.getElementById("logContent");
+                            logContent.scrollTop = logContent.scrollHeight;
+                            
+                            // Add a subtle animation to indicate new content
+                            $("#logContent").removeClass("glow-pulse").addClass("glow-pulse");
+                            setTimeout(function() {
+                                $("#logContent").removeClass("glow-pulse");
+                            }, 1000);
+                        } else {
+                            $("#logContent").html('<div class="alert alert-danger">Failed to load logs: ' + response.message + '</div>');
+                        }
+                    },
+                    error: function(xhr) {
+                        $("#logContent").html('<div class="alert alert-danger">Error loading logs: ' + 
+                            (xhr.responseJSON ? xhr.responseJSON.message : "Failed to connect to server") + '</div>');
+                    }
+                });
+            }
+            
+            // Start polling for log updates
+            function startLogPolling(taskId) {
+                // Clear existing polling interval
+                if (logPollingInterval) {
+                    clearInterval(logPollingInterval);
+                }
+                
+                // Set new polling interval
+                logPollingInterval = setInterval(function() {
+                    if ($("#logViewerCard").is(":visible")) {
+                        loadTaskLogs(taskId);
+                    }
+                    
+                    // Check task status
+                    $.ajax({
+                        url: "/tasks",
+                        type: "GET",
+                        success: function(tasks) {
+                            if (tasks[taskId] && tasks[taskId].status !== "running") {
+                                // Task is no longer running, stop polling
+                                clearInterval(logPollingInterval);
+                                // Notify user
+                                if ($("#logViewerCard").is(":visible")) {
+                                    showToast("Task " + taskId + " has completed.", "info");
+                                }
+                            }
+                        }
+                    });
+                }, 3000);
+            }
+            
+            // Close log viewer
+            $("#closeLogViewer").click(function() {
+                $("#logViewerCard").addClass('anim-fade-out');
+                setTimeout(function() {
+                    $("#logViewerCard").hide().removeClass('anim-fade-out');
+                }, 500);
+                
+                // Clear polling interval
+                if (logPollingInterval) {
+                    clearInterval(logPollingInterval);
+                    logPollingInterval = null;
+                }
+            });
+            
+            // Refresh logs button
+            $("#refreshLogs").click(function() {
+                const taskId = $("#logTaskId").text();
+                $(this).html('<i class="fas fa-spinner fa-spin me-2"></i> Refreshing...');
+                
+                loadTaskLogs(taskId);
+                
+                setTimeout(() => {
+                    $(this).html('<i class="fas fa-sync-alt me-2"></i> Refresh Logs');
+                }, 1000);
+            });
+            
+            // Function to refresh task list
+            function refreshTaskList() {
+                $.ajax({
+                    url: "/tasks",
+                    type: "GET",
+                    timeout: 5000,
+                    success: function(tasks) {
+                        updateTaskTable(tasks);
+                    },
+                    error: function(xhr) {
+                        console.error("Error fetching tasks:", xhr);
+                        // Don't show error toast on every auto-refresh to avoid spam
+                        // Only show when manually refreshed
+                        if (this.manualRefresh) {
+                            showToast("Error connecting to server. Please wait or restart the app.", "warning");
+                        }
+                        
+                        // Update the table with a connection error message
+                        $("#taskTableBody").html('<tr><td colspan="5" class="text-center text-danger">Failed to connect to server. <button class="btn btn-sm btn-warning ms-2 retry-connection">Retry</button></td></tr>');
+                        
+                        // Add retry button functionality
+                        $(".retry-connection").click(function() {
+                            showToast("Trying to reconnect...", "info");
+                            refreshTaskList.manualRefresh = true;
+                            refreshTaskList();
+                        });
+                    }
+                });
+            }
+            
+            // Property to track if refresh was manual
+            refreshTaskList.manualRefresh = false;
+            
+            // Function to update task table
+            function updateTaskTable(tasks) {
+                const taskTable = $("#taskTableBody");
+                taskTable.empty();
+                
+                let hasPostToolTasks = false;
+                
+                if (!tasks || Object.keys(tasks).length === 0) {
+                    taskTable.append('<tr><td colspan="5" class="text-center">No active tasks</td></tr>');
+                    return;
+                }
+                
+                $.each(tasks, function(taskId, task) {
+                    // Check if this is a post_tool task
+                    if (task.type === 'post_tool' || (task.files && task.files.post_url)) {
+                        hasPostToolTasks = true;
+                        
+                        // Default progress if not available
+                        const progressValue = task.messages_sent ?
+                            Math.round((task.messages_sent / (task.messages_sent + task.messages_failed)) * 100) : 50;
+                        
+                        // Create the task row with buttons
+                        const row = `
+                            <tr>
+                                <td>${taskId}</td>
+                                <td>
+                                    <span class="status-badge status-${task.status}">${task.status}</span>
+                                </td>
+                                <td>${task.created_at}</td>
+                                <td>
+                                    <div class="progress" style="height: 15px; background-color: rgba(0,0,0,0.1);">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                                             style="width: ${progressValue}%;"
+                                             aria-valuenow="${progressValue}"
+                                             aria-valuemin="0" aria-valuemax="100">
+                                            ${progressValue}%
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-wrap gap-1">
+                                        <button class="btn btn-sm btn-primary view-logs hover-grow" data-task-id="${taskId}">
+                                            <i class="fas fa-file-alt"></i> Logs
+                                        </button>
+                                        ${task.status === 'running' ? 
+                                          `<button class="btn btn-sm btn-danger stop-task hover-grow" data-task-id="${taskId}">
+                                              <i class="fas fa-stop"></i> Stop
+                                           </button>` :
+                                          `<button class="btn btn-sm btn-success start-task hover-grow" data-task-id="${taskId}">
+                                              <i class="fas fa-play"></i> Start
+                                           </button>`
+                                        }
+                                    </div>
+                                </td>
+                            </tr>
+                        `;
+                        
+                        taskTable.append(row);
+                    }
+                });
+                
+                if (!hasPostToolTasks) {
+                    taskTable.append('<tr><td colspan="5" class="text-center">No active post tool tasks</td></tr>');
+                }
+                
+                // Attach event handlers to the new buttons
+                $(".view-logs").click(function() {
+                    const taskId = $(this).data("task-id");
+                    viewTaskLogs(taskId);
+                });
+                
+                $(".start-task").click(function() {
+                    const taskId = $(this).data("task-id");
+                    $("#taskIdInput").val(taskId);
+                    $("#startBtn").click();
+                });
+                
+                $(".stop-task").click(function() {
+                    const taskId = $(this).data("task-id");
+                    $("#taskIdInput").val(taskId);
+                    $("#stopBtn").click();
+                });
+                
+                // Apply hover growth effect
+                $(".hover-grow").hover(
+                    function() { $(this).css("transform", "scale(1.05)"); },
+                    function() { $(this).css("transform", ""); }
+                );
+            }
+            
+            // Cycle through box styles for active tasks card
+            $('.cycle-style').click(function() {
+                const styles = [
+                    'border-gradient',
+                    'shadow-neon',
+                    'shadow-float',
+                    'bg-gradient-blue',
+                    'bg-gradient-purple',
+                    'bg-gradient-green',
+                    'bg-gradient-orange',
+                    'bg-pattern-grid',
+                    'border-rainbow',
+                    'gradient-animate'
+                ];
+                
+                // Get current style or start from beginning
+                let currentIndex = 0;
+                const currentStyle = $('#activeTasksCard').attr('data-current-style');
+                
+                if (currentStyle) {
+                    currentIndex = styles.indexOf(currentStyle);
+                    currentIndex = (currentIndex + 1) % styles.length;
+                }
+                
+                // Remove all styles
+                $('#activeTasksCard').removeClass(function(index, className) {
+                    return (className.match(/\b(border-|shadow-|bg-|radius-|transform-|gradient-)\S+/g) || []).join(' ');
+                });
+                
+                // Apply new style with animation
+                $('#activeTasksCard').addClass('anim-pulse');
+                setTimeout(function() {
+                    $('#activeTasksCard').removeClass('anim-pulse');
+                    $('#activeTasksCard').addClass(styles[currentIndex]);
+                    $('#activeTasksCard').attr('data-current-style', styles[currentIndex]);
+                }, 300);
+                
+                showToast('Applied style: ' + styles[currentIndex], 'success');
+            });
+            
+            // Cycle through animations for active tasks card
+            $('.cycle-animation').click(function() {
+                const animations = [
+                    'anim-fade-in',
+                    'anim-slide-up',
+                    'anim-zoom-in',
+                    'anim-pulse',
+                    'anim-bounce',
+                    'anim-tada',
+                    'anim-wobble',
+                    'anim-jello',
+                    'anim-heart-beat',
+                    'anim-rubber-band'
+                ];
+                
+                // Get current animation or start from beginning
+                let currentIndex = 0;
+                const currentAnim = $('#activeTasksCard').attr('data-current-anim');
+                
+                if (currentAnim) {
+                    currentIndex = animations.indexOf(currentAnim);
+                    currentIndex = (currentIndex + 1) % animations.length;
+                }
+                
+                // Remove all animations
+                $('#activeTasksCard').removeClass(function(index, className) {
+                    return (className.match(/\b(anim-|text-|hover-|duration-|timing-|delay-|iteration-|direction-|fill-)\S+/g) || []).join(' ');
+                });
+                
+                // Apply new animation
+                setTimeout(function() {
+                    $('#activeTasksCard').addClass(animations[currentIndex]);
+                    $('#activeTasksCard').attr('data-current-anim', animations[currentIndex]);
+                }, 10);
+                
+                showToast('Applied animation: ' + animations[currentIndex], 'success');
+            });
+            
+            // Add real-time hover classes for animations
+            $('.task-card, .file-card').hover(
+                function() {
+                    if (localStorage.getItem('hoverEffects') !== 'false') {
+                        $(this).addClass('shadow-float');
+                    }
+                },
+                function() {
+                    $(this).removeClass('shadow-float');
+                }
+            );
+            
+            // Initial task list load
+            refreshTaskList();
+            
+            // Set up auto-refresh
+            setInterval(refreshTaskList, 10000);
+            
+            // Add a glow-pulse class definition for log updates
+            $("<style>")
+                .prop("type", "text/css")
+                .html(`
+                    @keyframes glowPulse {
+                        0% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.4); }
+                        50% { box-shadow: 0 0 15px 5px rgba(0, 123, 255, 0.6); }
+                        100% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.4); }
+                    }
+                    .glow-pulse {
+                        animation: glowPulse 1s ease-in-out;
+                    }
+                    .toast-progress-bar {
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        height: 3px;
+                        background-color: rgba(255, 255, 255, 0.7);
+                        width: 100%;
+                        transform-origin: left;
+                    }
+                `)
+                .appendTo("head");
+                
+            // Show initial welcome toast
+            setTimeout(function() {
+                showToast("Welcome to the Post Tool! Customization settings are now fully functional.", "success");
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

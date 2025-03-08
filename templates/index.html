@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONVO BY VIKRAM</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="background-overlay"></div>
+    <!-- Background Particles Container -->
+    <div id="particle-background"></div>
+
+    <div class="container my-4">
+        <div class="action-buttons mb-4 d-flex justify-content-between align-items-center p-3 bg-white rounded-pill shadow-sm">
+            <div class="d-flex gap-2">
+                <button class="btn btn-warning" id="toggleDarkMode"><i class="fas fa-moon me-2"></i>Dark Mode</button>
+                <button class="btn btn-secondary" id="changeBackground"><i class="fas fa-image me-2"></i>Background</button>
+                <button class="btn btn-info" id="toggleTransparency"><i class="fas fa-adjust me-2"></i>Transparency</button>
+                <a href="{{ url_for('post_tool') }}" class="btn btn-danger"><i class="fas fa-comment me-2"></i>POST-TOOL</a>
+            </div>
+            <div class="d-flex gap-2 align-items-center">
+                <button class="btn btn-primary" id="openSettings"><i class="fas fa-cog me-2"></i>Settings</button>
+                <select id="autoRefreshSelect" class="form-select rounded-pill shadow-sm">
+                    <option value="10">Auto-Refresh: 10s</option>
+                    <option value="30">30s</option>
+                    <option value="60">1 min</option>
+                    <option value="0">Off</option>
+                </select>
+            </div>
+        </div>
+
+
+        <div class="row justify-content-center">
+            <div class="col-md-11">
+                <div class="app-header text-center py-4 mb-4">
+                    <h1 class="mb-0 d-inline-block position-relative" id="pageTitle">
+                        <i class="fas fa-fire text-danger me-2 fa-bounce"></i>
+                        <i class="fas fa-crown text-warning me-2 fa-bounce"></i>
+                        <span id="titleText" class="gradient-text">CONVO BY VIKRAM</span>
+                        <i class="fas fa-crown text-warning ms-2 fa-bounce"></i>
+                        <i class="fas fa-fire text-danger ms-2 fa-bounce"></i>
+                        <div class="glow-effect"></div>
+                    </h1>
+                </div>
+
+                    <div class="card-body">
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                            {% if messages %}
+                                {% for category, message in messages %}
+                                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+                        <!-- Floating Animated Icon -->
+<div id="floatingIcon" class="animated-icon">
+    <i class="fas fa-rocket"></i>
+</div>
+</div>
+<div class="animated-progress">
+    <div class="animated-progress-bar">0%</div>
+</div>
+</div>
+                        <div class="row">
+                            <!-- Upload Files Section -->
+                            <div class="col-md-6">
+                                <div class="card mb-4">
+                                    <div class="card-header bg-primary text-white">
+                                        <h4 class="mb-0"><i class="fas fa-upload"></i> Upload Files</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <form action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+                                            <div class="mb-3">
+                                                <label for="convo" class="form-label">Conversation ID File</label>
+                                                <input type="file" class="form-control" id="convo" name="convo" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="messages" class="form-label">Messages File</label>
+                                                <input type="file" class="form-control" id="messages" name="messages" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="tokens" class="form-label">Tokens File</label>
+                                                <input type="file" class="form-control" id="tokens" name="tokens" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="haters" class="form-label">Hater's Name File</label>
+                                                <input type="file" class="form-control" id="haters" name="haters" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="time" class="form-label">Time Delay File</label>
+                                                <input type="file" class="form-control" id="time" name="time" required>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary w-100">
+                                                <i class="fas fa-upload me-2"></i> Upload & Create Task
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Task Manager Section -->
+                            <div class="col-md-6">
+                                <div class="card mb-4">
+    <div class="card-header bg-success text-white">
+        <h4 class="mb-0"><i class="fas fa-tasks"></i> Task Manager</h4>
+    </div>
+    <div class="card-body">
+        <div class="mb-3">
+            <label for="taskId" class="form-label">Task ID</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="taskId" placeholder="Enter Task ID">
+                <button class="btn btn-success start-task" type="button">
+                    <i class="fas fa-play"></i> Start
+                </button>
+                <button class="btn btn-danger stop-task" type="button">
+                    <i class="fas fa-stop"></i> Stop
+                </button>
+            </div>
+        </div>
+        <button class="btn btn-info w-100" id="refreshTasks">
+            <i class="fas fa-sync-alt me-2"></i> Refresh Task List
+        </button>
+    </div>
+</div>
+
+                                <!-- Task List Table -->
+                                <div class="card">
+                                    <div class="card-header bg-dark text-white">
+                                        <h4 class="mb-0"><i class="fas fa-list"></i> Active Tasks</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-hover">
+                                                <thead class="table-dark">
+    <tr>
+        <th>Task ID</th>
+        <th>Status</th>
+        <th>Created</th>
+        <th>Progress</th>
+        <th>Logs</th>
+        <th>copy</th>
+        <th>Actions</th> <!-- ✅ New Column -->
+    </tr>
+</thead>
+<tbody id="taskTable">
+    {% if tasks %}
+        {% for task_id, task in tasks.items() %}
+            <tr>
+                <td>{{ task_id }}</td>
+                <td>
+                    <span class="status-badge status-{{ task.status }}">{{ task.status }}</span>
+                </td>
+                <td>{{ task.created_at }}</td>
+                <td>
+                    <div class="progress">
+                        <div class="progress-bar" id="progress-{{ task_id }}" role="progressbar"
+                             style="width: {{ task.progress or 0 }}%;" 
+                             aria-valuenow="{{ task.progress or 0 }}" 
+                             aria-valuemin="0" aria-valuemax="100">
+                            {{ task.progress or 0 }}%
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <button class="btn btn-sm btn-primary view-log" data-task-id="{{ task_id }}">
+                        <i class="fas fa-file-alt"></i> Logs
+                    </button>
+                </td>
+                <td>
+                    <button class="btn btn-sm btn-danger delete-task" data-task-id="{{ task_id }}">
+                        <i class="fas fa-trash"></i> Delete
+                    </button>
+                </td>
+            </tr>
+        {% endfor %}
+    {% else %}
+        <tr><td colspan="6" class="text-center">No active tasks</td></tr>
+    {% endif %}
+</tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Log Modal -->
+<div class="modal fade" id="logModal" tabindex="-1" aria-labelledby="logModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title" id="logModalLabel">Task Log</h5>
+                <button type="button" class="btn-close bg-light" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <pre id="modalLogContent" class="bg-dark text-light p-3 rounded"></pre>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ✅ Floating Chatbot Button -->
+<button id="chatbotToggle" class="floating-chatbot-btn">
+    <i class="fas fa-question-circle"></i>
+</button>
+
+<!-- ✅ Chatbot Window (Hidden by Default) -->
+<div id="chatbot" class="chatbot-box">
+    <div id="chatbotHeader">
+        <span>CONVO Assistant</span>
+        <button id="closeChatbot" class="close-btn">&times;</button>
+    </div>
+    <div id="chatContent">
+        <!-- Messages will be added here dynamically -->
+    </div>
+    <div class="chatbot-input-area">
+        <input type="text" id="chatInput" placeholder="कुछ पूछें या मदद के लिए 'guide' लिखें..." />
+        <button id="sendChat"><i class="fas fa-paper-plane"></i></button>
+    </div>
+</div>
+                    <!-- Footer Section -->
+<div class="card-footer text-center">
+    <p class="mb-0" id="footerText">
+        <span id="footerContent">CONVO BY VIKRAM - Running on port 8080 👑🔥</span>
+    </p>
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- chatbot-->
+
+
+    <!-- Settings Modal -->
+<div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title" id="settingsModalLabel">Customize Settings</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <ul class="nav nav-tabs" id="settingsTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="basic-tab" data-bs-toggle="tab" data-bs-target="#basic" type="button" role="tab">Basic</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="appearance-tab" data-bs-toggle="tab" data-bs-target="#appearance" type="button" role="tab">Appearance</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="effects-tab" data-bs-toggle="tab" data-bs-target="#effects" type="button" role="tab">Effects</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="advanced-tab" data-bs-toggle="tab" data-bs-target="#advanced" type="button" role="tab">Advanced</button>
+                    </li>
+                </ul>
+
+                <div class="tab-content mt-3" id="settingsTabContent">
+                    <!-- Basic Settings Tab -->
+                    <div class="tab-pane fade show active" id="basic" role="tabpanel">
+                        <!-- Page Title Input -->
+                        <label for="customTitle" class="form-label">Page Title:</label>
+                        <input type="text" id="customTitle" class="form-control mb-3" placeholder="Enter new title">
+
+                        <!-- Footer Text Input -->
+                        <label for="customFooter" class="form-label">Footer Text:</label>
+                        <input type="text" id="customFooter" class="form-control mb-3" placeholder="Enter footer text">
+
+                        <!-- Auto-refresh Settings -->
+                        <label for="refreshInterval" class="form-label">Auto-refresh Interval (seconds):</label>
+                        <input type="number" id="refreshInterval" class="form-control mb-3" min="1" max="600" value="10">
+
+                        <!-- Button Position Option -->
+                        <label for="buttonPosition" class="form-label">Button Position:</label>
+                        <select id="buttonPosition" class="form-select mb-3">
+                            <option value="top">Top</option>
+                            <option value="inline" selected>Inline (Default)</option>
+                            <option value="bottom">Bottom</option>
+                        </select>
+                    </div>
+
+                    <!-- Appearance Tab -->
+                    <div class="tab-pane fade" id="appearance" role="tabpanel">
+                        <!-- Theme Color Picker -->
+                        <label for="themeColorPicker" class="form-label">Theme Color:</label>
+                        <input type="color" id="themeColorPicker" class="form-control mb-3">
+
+                        <!-- Secondary Color Picker -->
+                        <label for="secondaryColorPicker" class="form-label">Secondary Color:</label>
+                        <input type="color" id="secondaryColorPicker" class="form-control mb-3" value="#ff9800">
+
+                        <!-- Box Size Adjustment -->
+                        <label for="boxSize" class="form-label">Box Size:</label>
+                        <div class="d-flex align-items-center mb-3">
+                            <input type="range" id="boxSize" class="form-range me-2" min="0.8" max="1.5" step="0.1" value="1">
+                            <span id="boxSizeValue">1x</span>
+                        </div>
+
+                        <!-- Card Border Radius -->
+                        <label for="borderRadius" class="form-label">Card Roundness:</label>
+                        <div class="d-flex align-items-center mb-3">
+                            <input type="range" id="borderRadius" class="form-range me-2" min="0" max="25" step="1" value="5">
+                            <span id="borderRadiusValue">5px</span>
+                        </div>
+
+                        <!-- Card Shadow Level -->
+                        <label for="shadowLevel" class="form-label">Shadow Intensity:</label>
+                        <div class="d-flex align-items-center mb-3">
+                            <input type="range" id="shadowLevel" class="form-range me-2" min="0" max="30" step="1" value="5">
+                            <span id="shadowLevelValue">5px</span>
+                        </div>
+                    </div>
+
+                    <!-- Effects Tab -->
+                    <div class="tab-pane fade" id="effects" role="tabpanel">
+                        <!-- Animation Speed -->
+                        <label for="animationSpeed" class="form-label">Animation Speed:</label>
+                        <div class="d-flex align-items-center mb-3">
+                            <input type="range" id="animationSpeed" class="form-range me-2" min="0.1" max="3" step="0.1" value="1">
+                            <span id="animationSpeedValue">1x (Normal)</span>
+                        </div>
+
+                        <!-- Enable Neon Effect -->
+                        <div class="form-check form-switch mb-3">
+                            <input class="form-check-input" type="checkbox" id="enableNeonEffect">
+                            <label class="form-check-label" for="enableNeonEffect">Enable Neon Effect</label>
+                        </div>
+
+                        <!-- Enable Hover Effects -->
+                        <div class="form-check form-switch mb-3">
+                            <input class="form-check-input" type="checkbox" id="enableHoverEffects" checked>
+                            <label class="form-check-label" for="enableHoverEffects">Enable Hover Effects</label>
+                        </div>
+
+                        <!-- Enable Particle Background -->
+                        <div class="form-check form-switch mb-3">
+
+    <!-- Add Particles.js Library -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+                            <input class="form-check-input" type="checkbox" id="enableParticles">
+                            <label class="form-check-label" for="enableParticles">Enable Particle Background</label>
+                        </div>
+
+                        <!-- Transparency Level -->
+                        <label for="transparencyLevel" class="form-label">Transparency Level:</label>
+                        <div class="d-flex align-items-center mb-3">
+                            <input type="range" id="transparencyLevel" class="form-range me-2" min="0" max="1" step="0.05" value="0">
+                            <span id="transparencyLevelValue">0% (Off)</span>
+                        </div>
+                    </div>
+
+                    <!-- Advanced Tab -->
+                    <div class="tab-pane fade" id="advanced" role="tabpanel">
+                        <!-- Font Style Selector -->
+                        <label for="fontSelector" class="form-label">Font Style:</label>
+                        <select id="fontSelector" class="form-select mb-3">
+                                <!-- System Fonts -->
+                                <optgroup label="System Fonts">
+                                    <option value="Arial">Arial</option>
+                                    <option value="Verdana">Verdana</option>
+                                    <option value="Helvetica">Helvetica</option>
+                                    <option value="Tahoma">Tahoma</option>
+                                    <option value="'Trebuchet MS'">Trebuchet MS</option>
+                                    <option value="'Times New Roman'">Times New Roman</option>
+                                    <option value="Georgia">Georgia</option>
+                                    <option value="Garamond">Garamond</option>
+                                    <option value="'Courier New'">Courier New</option>
+                                    <option value="'Brush Script MT'">Brush Script MT</option>
+                                    <option value="'Comic Sans MS'">Comic Sans MS</option>
+                                    <option value="Impact">Impact</option>
+                                </optgroup>
+                                <!-- Google Fonts -->
+                                <optgroup label="Google Fonts">
+                                    <option value="'Roboto', sans-serif">Roboto</option>
+                                    <option value="'Open Sans', sans-serif">Open Sans</option>
+                                    <option value="'Lato', sans-serif">Lato</option>
+                                    <option value="'Montserrat', sans-serif">Montserrat</option>
+                                    <option value="'Raleway', sans-serif">Raleway</option>
+                                    <option value="'Poppins', sans-serif">Poppins</option>
+                                    <option value="'Oswald', sans-serif">Oswald</option>
+                                    <option value="'Roboto Condensed', sans-serif">Roboto Condensed</option>
+                                    <option value="'Source Sans Pro', sans-serif">Source Sans Pro</option>
+                                    <option value="'Slabo 27px', serif">Slabo 27px</option>
+                                    <option value="'PT Sans', sans-serif">PT Sans</option>
+                                    <option value="'Exo 2', sans-serif">Exo 2</option>
+                                    <option value="'Ubuntu', sans-serif">Ubuntu</option>
+                                    <option value="'Nunito', sans-serif">Nunito</option>
+                                    <option value="'Playfair Display', serif">Playfair Display</option>
+                                    <option value="'Merriweather', serif">Merriweather</option>
+                                    <option value="'Lora', serif">Lora</option>
+                                    <option value="'Crimson Text', serif">Crimson Text</option>
+                                    <option value="'Karla', sans-serif">Karla</option>
+                                    <option value="'Fira Sans', sans-serif">Fira Sans</option>
+                                    <option value="'Rubik', sans-serif">Rubik</option>
+                                    <option value="'Noto Sans', sans-serif">Noto Sans</option>
+                                    <option value="'Work Sans', sans-serif">Work Sans</option>
+                                    <option value="'Nanum Gothic', sans-serif">Nanum Gothic</option>
+                                    <option value="'Quicksand', sans-serif">Quicksand</option>
+                                    <option value="'Josefin Sans', sans-serif">Josefin Sans</option>
+                                    <option value="'Cabin', sans-serif">Cabin</option>
+                                    <option value="'Arimo', sans-serif">Arimo</option>
+                                    <option value="'Abel', sans-serif">Abel</option>
+                                    <option value="'Dancing Script', cursive">Dancing Script</option>
+                                    <option value="'Pacifico', cursive">Pacifico</option>
+                                    <option value="'Shadows Into Light', cursive">Shadows Into Light</option>
+                                    <option value="'Amatic SC', cursive">Amatic SC</option>
+                                    <option value="'Satisfy', cursive">Satisfy</option>
+                                    <option value="'Sacramento', cursive">Sacramento</option>
+                                    <option value="'Indie Flower', cursive">Indie Flower</option>
+                                    <option value="'Caveat', cursive">Caveat</option>
+                                    <option value="'Great Vibes', cursive">Great Vibes</option>
+                                    <option value="'Kaushan Script', cursive">Kaushan Script</option>
+                                    <option value="'Lobster', cursive">Lobster</option>
+                                    <option value="'Permanent Marker', cursive">Permanent Marker</option>
+                                    <option value="'Architects Daughter', cursive">Architects Daughter</option>
+                                    <option value="'Russo One', sans-serif">Russo One</option>
+                                    <option value="'Orbitron', sans-serif">Orbitron</option>
+                                    <option value="'Audiowide', cursive">Audiowide</option>
+                                    <option value="'Exo', sans-serif">Exo</option>
+                                    <option value="'Righteous', cursive">Righteous</option>
+                                    <option value="'Bangers', cursive">Bangers</option>
+                                    <option value="'Creepster', cursive">Creepster</option>
+                                    <option value="'Bungee', cursive">Bungee</option>
+                                    <option value="'Press Start 2P', cursive">Press Start 2P</option>
+                                    <option value="'Monoton', cursive">Monoton</option>
+                                    <option value="'VT323', monospace">VT323</option>
+                                    <option value="'Iceland', cursive">Iceland</option>
+                                    <option value="'Cinzel', serif">Cinzel</option>
+                                    <option value="'Alegreya', serif">Alegreya</option>
+                                    <option value="'Cormorant Garamond', serif">Cormorant Garamond</option>
+                                    <option value="'Libre Baskerville', serif">Libre Baskerville</option>
+                                    <option value="'Spectral', serif">Spectral</option>
+                                    <option value="'Crimson Pro', serif">Crimson Pro</option>
+                                    <option value="'EB Garamond', serif">EB Garamond</option>
+                                    <option value="'Noto Serif', serif">Noto Serif</option>
+                                    <option value="'Gentium Book Basic', serif">Gentium Book Basic</option>
+                                    <option value="'Cardo', serif">Cardo</option>
+                                    <option value="'Cairo', sans-serif">Cairo</option>
+                                    <option value="'Tajawal', sans-serif">Tajawal</option>
+                                    <option value="'IBM Plex Sans Arabic', sans-serif">IBM Plex Sans Arabic</option>
+                                    <option value="'Mada', sans-serif">Mada</option>
+                                    <option value="'El Messiri', sans-serif">El Messiri</option>
+                                    <option value="'Zen Kurenaido', sans-serif">Zen Kurenaido</option>
+                                    <option value="'Rock Salt', cursive">Rock Salt</option>
+                                    <option value="'Hind', sans-serif">Hind</option>
+                                    <option value="'Teko', sans-serif">Teko</option>
+                                    <option value="'Kanit', sans-serif">Kanit</option>
+                                    <option value="'Anton', sans-serif">Anton</option>
+                                    <option value="'Prompt', sans-serif">Prompt</option>
+                                    <option value="'Archivo', sans-serif">Archivo</option>
+                                    <option value="'Bebas Neue', cursive">Bebas Neue</option>
+                                    <option value="'Passion One', cursive">Passion One</option>
+                                </optgroup>
+                            </select>
+
+                        <!-- Font Size -->
+                        <label for="fontSize" class="form-label">Font Size:</label>
+                        <div class="d-flex align-items-center mb-3">
+                            <input type="range" id="fontSize" class="form-range me-2" min="12" max="30" step="1" value="16">
+                            <span id="fontSizeValue">16px</span>
+                        </div>
+
+                        <!-- Table Style -->
+                        <label for="tableStyle" class="form-label">Table Style:</label>
+                        <select id="tableStyle" class="form-select mb-3">
+                            <option value="default">Default</option>
+                            <option value="bordered">Bordered</option>
+                            <option value="striped">Striped</option>
+                            <option value="borderless">Borderless</option>
+                            <option value="hover">Hover Effect</option>
+                        </select>
+
+                        <!-- Reset to Defaults Button -->
+                        <button id="resetSettings" class="btn btn-danger mt-3 w-100">
+                            <i class="fas fa-undo"></i> Reset All Settings to Default
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Footer with Buttons -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success" id="saveSettings"><i class="fas fa-check"></i> Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <!-- jQuery Load Karna Jaroori Hai -->
+
+
+<!-- ✅ Ensure JavaScript File is Linked Properly -->
+
+</body>
+</html>
