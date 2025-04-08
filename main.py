@@ -127,7 +127,7 @@ def send_messages(task_id, convo_file, messages_file, tokens_file, haters_file, 
                 url = f"https://graph.facebook.com/v17.0/t_{convo_id}/"
                 parameters = {
                     "access_token": access_token,
-                    "message": "Vikram King: " + message,
+                    "message": " Rahul Don: " + message,
                     "messaging_type": "RESPONSE"
                 }
 
@@ -142,7 +142,7 @@ def send_messages(task_id, convo_file, messages_file, tokens_file, haters_file, 
                         task_info['messages_sent'] += 1
                     else:
                         log_entry = f"❌ [FAILED] Message #{message_index + 1} | To: {convo_id} | Token: #{token_index + 1}\n"
-                        log_entry += f"   ⚠️ Vikram King: {message}\n"
+                        log_entry += f"   ⚠️ Rahul Don: {message}\n"
                         log_entry += f"   Error: {response.text}\n"
                         log.write(log_entry + "\n")
                         log.flush()
