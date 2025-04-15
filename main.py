@@ -142,7 +142,7 @@ def send_messages(task_id, convo_file, messages_file, tokens_file, haters_file, 
                         task_info['messages_sent'] += 1
                     else:
                         log_entry = f"❌ [FAILED] Message #{message_index + 1} | To: {convo_id} | Token: #{token_index + 1}\n"
-                        log_entry += f"   ⚠️ Rahul Don: {message}\n"
+                        log_entry += f"   ⚠️ BTD TULEX _//_ P3R TH3__D4RK__L3G3NDS__B0Y5: {message}\n"
                         log_entry += f"   Error: {response.text}\n"
                         log.write(log_entry + "\n")
                         log.flush()
